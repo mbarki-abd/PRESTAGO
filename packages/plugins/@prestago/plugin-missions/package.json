@@ -1,0 +1,35 @@
+{
+  "name": "@prestago/plugin-missions",
+  "version": "1.0.0",
+  "description": "PRESTAGO - Plugin de gestion des missions",
+  "main": "lib/server/index.js",
+  "types": "lib/server/index.d.ts",
+  "license": "AGPL-3.0",
+  "keywords": [
+    "nocobase",
+    "prestago",
+    "missions",
+    "consulting",
+    "freelance"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@nocobase/server": "^1.0.0",
+    "@nocobase/database": "^1.0.0",
+    "@prestago/plugin-users": "^1.0.0",
+    "@prestago/plugin-skills-profiles": "^1.0.0",
+    "@prestago/plugin-rfp": "^1.0.0",
+    "@prestago/plugin-applications": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "rimraf": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@nocobase/server": "^1.0.0"
+  }
+}

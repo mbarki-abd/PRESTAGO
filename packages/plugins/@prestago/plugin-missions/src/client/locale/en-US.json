@@ -1,0 +1,301 @@
+{
+  "prestago-missions": {
+    "title": "Missions",
+    "menu": {
+      "missions": "Missions",
+      "myMissions": "My Missions",
+      "activeMissions": "Active Missions",
+      "milestones": "Milestones",
+      "deliverables": "Deliverables",
+      "extensions": "Extensions",
+      "evaluations": "Evaluations"
+    },
+    "mission": {
+      "reference": "Reference",
+      "title": "Title",
+      "description": "Description",
+      "rfp": "RFP",
+      "application": "Application",
+      "offer": "Offer",
+      "profile": "Consultant Profile",
+      "clientOrganization": "Client Organization",
+      "consultantOrganization": "Consultant Organization",
+      "clientManager": "Client Manager",
+      "consultant": "Consultant",
+      "accountManager": "Account Manager",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "actualStartDate": "Actual Start Date",
+      "actualEndDate": "Actual End Date",
+      "dailyRate": "Daily Rate",
+      "rateCurrency": "Currency",
+      "estimatedDays": "Estimated Days",
+      "actualDays": "Actual Days",
+      "budgetTotal": "Total Budget",
+      "budgetConsumed": "Budget Consumed",
+      "workMode": "Work Mode",
+      "remotePercentage": "Remote %",
+      "workLocation": "Work Location",
+      "reportingFrequency": "Reporting Frequency",
+      "requiresTimesheet": "Timesheet Required",
+      "timesheetApprovalLevels": "Timesheet Approval Levels",
+      "endType": "End Type",
+      "terminationReason": "Termination Reason"
+    },
+    "status": {
+      "draft": "Draft",
+      "pending_start": "Pending Start",
+      "active": "Active",
+      "on_hold": "On Hold",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "terminated_early": "Early Termination"
+    },
+    "endType": {
+      "natural": "Natural End",
+      "mutual": "Mutual Agreement",
+      "client": "Client Termination",
+      "consultant": "Consultant Termination",
+      "force_majeure": "Force Majeure"
+    },
+    "workMode": {
+      "onsite": "On-site",
+      "remote": "Remote",
+      "hybrid": "Hybrid"
+    },
+    "reportingFrequency": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "biweekly": "Biweekly",
+      "monthly": "Monthly",
+      "quarterly": "Quarterly",
+      "on_demand": "On Demand"
+    },
+    "milestone": {
+      "title": "Milestones",
+      "name": "Name",
+      "description": "Description",
+      "dueDate": "Due Date",
+      "completedDate": "Completed Date",
+      "order": "Order",
+      "deliverablesRequired": "Deliverables Required",
+      "paymentTrigger": "Payment Trigger",
+      "paymentPercentage": "Payment %"
+    },
+    "milestoneStatus": {
+      "pending": "Pending",
+      "in_progress": "In Progress",
+      "completed": "Completed",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled"
+    },
+    "deliverable": {
+      "title": "Deliverables",
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "dueDate": "Due Date",
+      "submittedDate": "Submitted Date",
+      "approvedDate": "Approved Date",
+      "fileUrl": "File",
+      "attachments": "Attachments",
+      "reviewer": "Reviewer",
+      "reviewComments": "Review Comments",
+      "version": "Version"
+    },
+    "deliverableType": {
+      "document": "Document",
+      "code": "Code",
+      "presentation": "Presentation",
+      "report": "Report",
+      "prototype": "Prototype",
+      "training": "Training",
+      "support": "Support",
+      "other": "Other"
+    },
+    "deliverableStatus": {
+      "pending": "Pending",
+      "in_progress": "In Progress",
+      "submitted": "Submitted",
+      "under_review": "Under Review",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "revision_requested": "Revision Requested"
+    },
+    "extension": {
+      "title": "Extensions",
+      "type": "Type",
+      "originalEndDate": "Original End Date",
+      "newEndDate": "New End Date",
+      "additionalDays": "Additional Days",
+      "originalDailyRate": "Original Daily Rate",
+      "newDailyRate": "New Daily Rate",
+      "scopeChanges": "Scope Changes",
+      "additionalBudget": "Additional Budget",
+      "reason": "Reason",
+      "requestedBy": "Requested By",
+      "requestedAt": "Requested At",
+      "approvedBy": "Approved By",
+      "approvedAt": "Approved At",
+      "rejectionReason": "Rejection Reason",
+      "appliedAt": "Applied At"
+    },
+    "extensionType": {
+      "duration": "Duration Extension",
+      "scope": "Scope Extension",
+      "rate": "Rate Change",
+      "combined": "Combined"
+    },
+    "extensionStatus": {
+      "draft": "Draft",
+      "pending_approval": "Pending Approval",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "applied": "Applied"
+    },
+    "evaluation": {
+      "title": "Evaluations",
+      "evaluator": "Evaluator",
+      "evaluatorType": "Evaluator Type",
+      "evaluationPeriod": "Period",
+      "qualityScore": "Work Quality",
+      "communicationScore": "Communication",
+      "reliabilityScore": "Reliability",
+      "expertiseScore": "Technical Expertise",
+      "collaborationScore": "Collaboration",
+      "overallScore": "Overall Score",
+      "strengths": "Strengths",
+      "improvements": "Areas for Improvement",
+      "comments": "Comments",
+      "wouldRecommend": "Would Recommend",
+      "wouldWorkAgain": "Would Work Again",
+      "isPublic": "Public Evaluation"
+    },
+    "evaluatorType": {
+      "client": "Client",
+      "consultant": "Consultant"
+    },
+    "evaluationPeriod": {
+      "interim": "Interim",
+      "final": "Final"
+    },
+    "note": {
+      "title": "Notes",
+      "type": "Type",
+      "noteTitle": "Title",
+      "content": "Content",
+      "isPrivate": "Private Note",
+      "isPinned": "Pinned",
+      "priority": "Priority",
+      "attachments": "Attachments"
+    },
+    "noteType": {
+      "general": "General",
+      "progress": "Progress",
+      "issue": "Issue",
+      "risk": "Risk",
+      "decision": "Decision",
+      "feedback": "Feedback"
+    },
+    "notePriority": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "timeEntry": {
+      "title": "Time Entries",
+      "date": "Date",
+      "hours": "Hours",
+      "dayFraction": "Day Fraction",
+      "workType": "Work Type",
+      "location": "Location",
+      "description": "Description",
+      "taskReference": "Task Reference"
+    },
+    "workType": {
+      "regular": "Regular",
+      "overtime": "Overtime",
+      "night": "Night",
+      "weekend": "Weekend",
+      "holiday": "Holiday",
+      "on_call": "On-call"
+    },
+    "actions": {
+      "create": "Create Mission",
+      "start": "Start",
+      "pause": "Pause",
+      "resume": "Resume",
+      "complete": "Complete",
+      "cancel": "Cancel",
+      "terminate": "Terminate",
+      "addMilestone": "Add Milestone",
+      "addDeliverable": "Add Deliverable",
+      "submitDeliverable": "Submit",
+      "reviewDeliverable": "Review",
+      "approveDeliverable": "Approve",
+      "rejectDeliverable": "Reject",
+      "requestRevision": "Request Revision",
+      "createExtension": "Request Extension",
+      "submitExtension": "Submit for Approval",
+      "approveExtension": "Approve",
+      "rejectExtension": "Reject",
+      "applyExtension": "Apply",
+      "addEvaluation": "Evaluate",
+      "addNote": "Add Note"
+    },
+    "messages": {
+      "missionCreated": "Mission created successfully",
+      "missionStarted": "Mission started",
+      "missionPaused": "Mission paused",
+      "missionResumed": "Mission resumed",
+      "missionCompleted": "Mission completed",
+      "missionCancelled": "Mission cancelled",
+      "missionTerminated": "Mission terminated",
+      "milestoneCreated": "Milestone created",
+      "milestoneCompleted": "Milestone completed",
+      "deliverableSubmitted": "Deliverable submitted",
+      "deliverableApproved": "Deliverable approved",
+      "deliverableRejected": "Deliverable rejected",
+      "extensionCreated": "Extension requested",
+      "extensionApproved": "Extension approved",
+      "extensionRejected": "Extension rejected",
+      "extensionApplied": "Extension applied",
+      "evaluationSubmitted": "Evaluation submitted",
+      "noteAdded": "Note added",
+      "error": "An error occurred"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "milestones": "Milestones",
+      "deliverables": "Deliverables",
+      "timeEntries": "Time",
+      "extensions": "Extensions",
+      "evaluations": "Evaluations",
+      "notes": "Notes",
+      "history": "History",
+      "documents": "Documents"
+    },
+    "stats": {
+      "total": "Total Missions",
+      "active": "Active",
+      "completed": "Completed",
+      "totalBudget": "Total Budget",
+      "budgetConsumed": "Budget Consumed",
+      "consumptionRate": "Consumption Rate",
+      "averageDuration": "Average Duration",
+      "averageDailyRate": "Average Daily Rate",
+      "endingSoon": "Ending Soon",
+      "overdueMilestones": "Overdue Milestones",
+      "pendingDeliverables": "Pending Deliverables"
+    },
+    "alerts": {
+      "missionEndingSoon": "This mission ends in {days} days",
+      "milestoneDueSoon": "This milestone is due in {days} days",
+      "milestoneOverdue": "This milestone is overdue",
+      "deliverableDueSoon": "This deliverable is due in {days} days",
+      "pendingExtension": "An extension is pending approval",
+      "evaluationRequired": "An evaluation is required for this mission"
+    }
+  }
+}

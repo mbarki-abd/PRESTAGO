@@ -1,0 +1,301 @@
+{
+  "prestago-missions": {
+    "title": "Missions",
+    "menu": {
+      "missions": "Missions",
+      "myMissions": "Mes missions",
+      "activeMissions": "Missions actives",
+      "milestones": "Jalons",
+      "deliverables": "Livrables",
+      "extensions": "Extensions",
+      "evaluations": "Évaluations"
+    },
+    "mission": {
+      "reference": "Référence",
+      "title": "Titre",
+      "description": "Description",
+      "rfp": "Appel d'offres",
+      "application": "Candidature",
+      "offer": "Offre",
+      "profile": "Profil consultant",
+      "clientOrganization": "Organisation cliente",
+      "consultantOrganization": "Organisation consultant",
+      "clientManager": "Responsable client",
+      "consultant": "Consultant",
+      "accountManager": "Account Manager",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "actualStartDate": "Date de début réelle",
+      "actualEndDate": "Date de fin réelle",
+      "dailyRate": "TJM",
+      "rateCurrency": "Devise",
+      "estimatedDays": "Jours estimés",
+      "actualDays": "Jours réalisés",
+      "budgetTotal": "Budget total",
+      "budgetConsumed": "Budget consommé",
+      "workMode": "Mode de travail",
+      "remotePercentage": "% télétravail",
+      "workLocation": "Lieu de travail",
+      "reportingFrequency": "Fréquence de reporting",
+      "requiresTimesheet": "CRA requis",
+      "timesheetApprovalLevels": "Niveaux d'approbation CRA",
+      "endType": "Type de fin",
+      "terminationReason": "Raison de fin"
+    },
+    "status": {
+      "draft": "Brouillon",
+      "pending_start": "En attente de démarrage",
+      "active": "Active",
+      "on_hold": "Suspendue",
+      "completed": "Terminée",
+      "cancelled": "Annulée",
+      "terminated_early": "Terminée prématurément"
+    },
+    "endType": {
+      "natural": "Fin naturelle",
+      "mutual": "Résiliation amiable",
+      "client": "Rupture client",
+      "consultant": "Rupture consultant",
+      "force_majeure": "Force majeure"
+    },
+    "workMode": {
+      "onsite": "Sur site",
+      "remote": "Télétravail",
+      "hybrid": "Hybride"
+    },
+    "reportingFrequency": {
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "biweekly": "Bihebdomadaire",
+      "monthly": "Mensuel",
+      "quarterly": "Trimestriel",
+      "on_demand": "Sur demande"
+    },
+    "milestone": {
+      "title": "Jalons",
+      "name": "Nom",
+      "description": "Description",
+      "dueDate": "Date d'échéance",
+      "completedDate": "Date de complétion",
+      "order": "Ordre",
+      "deliverablesRequired": "Livrables requis",
+      "paymentTrigger": "Déclenche un paiement",
+      "paymentPercentage": "% du paiement"
+    },
+    "milestoneStatus": {
+      "pending": "En attente",
+      "in_progress": "En cours",
+      "completed": "Terminé",
+      "overdue": "En retard",
+      "cancelled": "Annulé"
+    },
+    "deliverable": {
+      "title": "Livrables",
+      "name": "Nom",
+      "description": "Description",
+      "type": "Type",
+      "dueDate": "Date d'échéance",
+      "submittedDate": "Date de soumission",
+      "approvedDate": "Date d'approbation",
+      "fileUrl": "Fichier",
+      "attachments": "Pièces jointes",
+      "reviewer": "Réviseur",
+      "reviewComments": "Commentaires de revue",
+      "version": "Version"
+    },
+    "deliverableType": {
+      "document": "Document",
+      "code": "Code",
+      "presentation": "Présentation",
+      "report": "Rapport",
+      "prototype": "Prototype",
+      "training": "Formation",
+      "support": "Support",
+      "other": "Autre"
+    },
+    "deliverableStatus": {
+      "pending": "En attente",
+      "in_progress": "En cours",
+      "submitted": "Soumis",
+      "under_review": "En revue",
+      "approved": "Approuvé",
+      "rejected": "Rejeté",
+      "revision_requested": "Révision demandée"
+    },
+    "extension": {
+      "title": "Extensions",
+      "type": "Type",
+      "originalEndDate": "Date de fin originale",
+      "newEndDate": "Nouvelle date de fin",
+      "additionalDays": "Jours additionnels",
+      "originalDailyRate": "TJM original",
+      "newDailyRate": "Nouveau TJM",
+      "scopeChanges": "Modifications du périmètre",
+      "additionalBudget": "Budget additionnel",
+      "reason": "Justification",
+      "requestedBy": "Demandé par",
+      "requestedAt": "Date de demande",
+      "approvedBy": "Approuvé par",
+      "approvedAt": "Date d'approbation",
+      "rejectionReason": "Motif de rejet",
+      "appliedAt": "Date d'application"
+    },
+    "extensionType": {
+      "duration": "Extension de durée",
+      "scope": "Extension de périmètre",
+      "rate": "Modification de tarif",
+      "combined": "Combinée"
+    },
+    "extensionStatus": {
+      "draft": "Brouillon",
+      "pending_approval": "En attente d'approbation",
+      "approved": "Approuvée",
+      "rejected": "Rejetée",
+      "applied": "Appliquée"
+    },
+    "evaluation": {
+      "title": "Évaluations",
+      "evaluator": "Évaluateur",
+      "evaluatorType": "Type d'évaluateur",
+      "evaluationPeriod": "Période",
+      "qualityScore": "Qualité du travail",
+      "communicationScore": "Communication",
+      "reliabilityScore": "Fiabilité",
+      "expertiseScore": "Expertise technique",
+      "collaborationScore": "Collaboration",
+      "overallScore": "Score global",
+      "strengths": "Points forts",
+      "improvements": "Axes d'amélioration",
+      "comments": "Commentaires",
+      "wouldRecommend": "Recommanderait",
+      "wouldWorkAgain": "Retravaillerait ensemble",
+      "isPublic": "Évaluation publique"
+    },
+    "evaluatorType": {
+      "client": "Client",
+      "consultant": "Consultant"
+    },
+    "evaluationPeriod": {
+      "interim": "Intermédiaire",
+      "final": "Finale"
+    },
+    "note": {
+      "title": "Notes",
+      "type": "Type",
+      "noteTitle": "Titre",
+      "content": "Contenu",
+      "isPrivate": "Note privée",
+      "isPinned": "Épinglée",
+      "priority": "Priorité",
+      "attachments": "Pièces jointes"
+    },
+    "noteType": {
+      "general": "Général",
+      "progress": "Avancement",
+      "issue": "Problème",
+      "risk": "Risque",
+      "decision": "Décision",
+      "feedback": "Feedback"
+    },
+    "notePriority": {
+      "low": "Basse",
+      "normal": "Normale",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "timeEntry": {
+      "title": "Entrées de temps",
+      "date": "Date",
+      "hours": "Heures",
+      "dayFraction": "Fraction de jour",
+      "workType": "Type de travail",
+      "location": "Lieu",
+      "description": "Description",
+      "taskReference": "Référence tâche"
+    },
+    "workType": {
+      "regular": "Régulier",
+      "overtime": "Heures sup.",
+      "night": "Nuit",
+      "weekend": "Week-end",
+      "holiday": "Férié",
+      "on_call": "Astreinte"
+    },
+    "actions": {
+      "create": "Créer une mission",
+      "start": "Démarrer",
+      "pause": "Mettre en pause",
+      "resume": "Reprendre",
+      "complete": "Terminer",
+      "cancel": "Annuler",
+      "terminate": "Résilier",
+      "addMilestone": "Ajouter un jalon",
+      "addDeliverable": "Ajouter un livrable",
+      "submitDeliverable": "Soumettre",
+      "reviewDeliverable": "Réviser",
+      "approveDeliverable": "Approuver",
+      "rejectDeliverable": "Rejeter",
+      "requestRevision": "Demander une révision",
+      "createExtension": "Demander une extension",
+      "submitExtension": "Soumettre pour approbation",
+      "approveExtension": "Approuver",
+      "rejectExtension": "Rejeter",
+      "applyExtension": "Appliquer",
+      "addEvaluation": "Évaluer",
+      "addNote": "Ajouter une note"
+    },
+    "messages": {
+      "missionCreated": "Mission créée avec succès",
+      "missionStarted": "Mission démarrée",
+      "missionPaused": "Mission mise en pause",
+      "missionResumed": "Mission reprise",
+      "missionCompleted": "Mission terminée",
+      "missionCancelled": "Mission annulée",
+      "missionTerminated": "Mission résiliée",
+      "milestoneCreated": "Jalon créé",
+      "milestoneCompleted": "Jalon terminé",
+      "deliverableSubmitted": "Livrable soumis",
+      "deliverableApproved": "Livrable approuvé",
+      "deliverableRejected": "Livrable rejeté",
+      "extensionCreated": "Extension demandée",
+      "extensionApproved": "Extension approuvée",
+      "extensionRejected": "Extension rejetée",
+      "extensionApplied": "Extension appliquée",
+      "evaluationSubmitted": "Évaluation soumise",
+      "noteAdded": "Note ajoutée",
+      "error": "Une erreur s'est produite"
+    },
+    "tabs": {
+      "overview": "Vue d'ensemble",
+      "milestones": "Jalons",
+      "deliverables": "Livrables",
+      "timeEntries": "Temps",
+      "extensions": "Extensions",
+      "evaluations": "Évaluations",
+      "notes": "Notes",
+      "history": "Historique",
+      "documents": "Documents"
+    },
+    "stats": {
+      "total": "Total missions",
+      "active": "Actives",
+      "completed": "Terminées",
+      "totalBudget": "Budget total",
+      "budgetConsumed": "Budget consommé",
+      "consumptionRate": "Taux de consommation",
+      "averageDuration": "Durée moyenne",
+      "averageDailyRate": "TJM moyen",
+      "endingSoon": "Se terminant bientôt",
+      "overdueMilestones": "Jalons en retard",
+      "pendingDeliverables": "Livrables en attente"
+    },
+    "alerts": {
+      "missionEndingSoon": "Cette mission se termine dans {days} jours",
+      "milestoneDueSoon": "Ce jalon arrive à échéance dans {days} jours",
+      "milestoneOverdue": "Ce jalon est en retard",
+      "deliverableDueSoon": "Ce livrable arrive à échéance dans {days} jours",
+      "pendingExtension": "Une extension est en attente d'approbation",
+      "evaluationRequired": "Une évaluation est requise pour cette mission"
+    }
+  }
+}
