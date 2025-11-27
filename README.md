@@ -23,7 +23,9 @@ Inspirée de [LittleBigConnection](https://www.littlebigconnection.com/), PRESTA
 - **Gestion des Missions** - Cycle de vie complet
 - **CRA (Timesheets)** - Workflow de validation multi-niveaux
 - **Facturation** - Génération automatique, PDF
-- **Contrats** - Templates, signature DocuSign
+- **Contrats** - Templates, signature électronique, conformité
+- **Notifications** - Multi-canal (in-app, email, SMS, push)
+- **Reporting** - Dashboards, KPIs, rapports programmés
 - **Multi-Tenant** - White-label, domaines personnalisés
 - **API REST** - Documentation OpenAPI
 
@@ -53,27 +55,29 @@ PRESTAGO/
 │       └── @prestago/         # Plugins PRESTAGO
 │           ├── plugin-users/              # ✅ Utilisateurs & Organisations
 │           ├── plugin-skills-profiles/    # ✅ Compétences & Profils
-│           ├── plugin-rfp/                # 🔄 Appels d'Offres
-│           ├── plugin-applications/       # ⏳ Candidatures & Matching
-│           ├── plugin-missions/           # ⏳ Gestion Missions
-│           ├── plugin-timesheets/         # ⏳ CRA
-│           ├── plugin-invoicing/          # ⏳ Facturation
-│           ├── plugin-contracts/          # ⏳ Contrats DocuSign
-│           ├── plugin-notifications/      # ⏳ Notifications
-│           └── plugin-reporting/          # ⏳ Dashboards & KPIs
+│           ├── plugin-rfp/                # ✅ Appels d'Offres
+│           ├── plugin-applications/       # ✅ Candidatures & Matching
+│           ├── plugin-missions/           # ✅ Gestion Missions
+│           ├── plugin-timesheets/         # ✅ CRA Multi-niveaux
+│           ├── plugin-invoicing/          # ✅ Facturation
+│           ├── plugin-contracts/          # ✅ Contrats & Conformité
+│           ├── plugin-notifications/      # ✅ Notifications & Messagerie
+│           └── plugin-reporting/          # ✅ Dashboards & KPIs
 ├── scripts/                   # Scripts utilitaires
 │   ├── setup-nocobase.sh      # Setup NocoBase depuis source
-│   ├── setup.sh               # Setup général
-│   └── deploy.sh              # Déploiement Hetzner
+│   ├── provision-hetzner.cjs  # Provisionnement serveur Hetzner
+│   └── deploy-to-server.sh    # Déploiement sur serveur existant
 ├── storage/                   # Fichiers uploadés
 └── docs/                      # Documentation
+    ├── CAHIER-DES-CHARGES.md  # Spécifications complètes
+    └── DEPLOYMENT.md          # Guide de déploiement
 ```
 
 ## Installation
 
 ### Prérequis
 
-- **Node.js 18+** (pour NocoBase)
+- **Node.js 20+** (pour NocoBase)
 - **pnpm** (gestionnaire de packages)
 - **Docker & Docker Compose** (pour infrastructure)
 - **Git**
@@ -119,6 +123,96 @@ docker-compose logs -f postgres redis minio meilisearch
 | PostgreSQL | localhost:5432 | prestago / prestago_secret |
 | Redis | localhost:6379 | - |
 
+## Plugins PRESTAGO
+
+### ✅ plugin-users (Complet)
+- Gestion utilisateurs (Freelance, ESN Admin/Commercial, Client Admin/Manager, Platform Admin)
+- Organisations avec hiérarchie parent/enfant
+- Authentification JWT (access + refresh tokens)
+- RBAC (Role-Based Access Control)
+- Multi-tenant avec isolation par organisation
+
+### ✅ plugin-skills-profiles (Complet)
+- **Compétences** : Hiérarchie, catégories, validation, aliases
+- **Profils Consultants** : Titre, résumé, disponibilité, tarifs
+- **Expériences** : Historique professionnel avec références
+- **Formations** : Diplômes, certifications académiques
+- **Certifications** : Avec vérification et expiration
+- **Langues** : Niveaux CEFR (A1-C2)
+- **Documents** : CV, diplômes, portfolios (MinIO)
+- **Calcul de Complétude** : Score automatique avec recommandations
+- **Recherche Avancée** : Filtres multi-critères, scoring de matching
+
+### ✅ plugin-rfp (Complet)
+- Appels d'offres clients avec workflow complet
+- Questions/réponses intégrées
+- Publication ciblée ou publique
+- Matching automatique avec consultants
+
+### ✅ plugin-applications (Complet)
+- Candidatures aux RFP
+- Matching IA avec scoring multi-critères
+- Workflow de sélection (shortlist, entretiens)
+- Messages entre parties
+
+### ✅ plugin-missions (Complet)
+- Cycle de vie complet des missions
+- Affectation des consultants
+- Suivi des jalons et livrables
+- Extensions et avenants
+
+### ✅ plugin-timesheets (Complet)
+- CRA hebdomadaires/mensuels
+- **Workflow de validation multi-niveaux** (jusqu'à 3 niveaux)
+- Saisie par jour avec types d'activité
+- Commentaires et ajustements
+- Export PDF/Excel
+
+### ✅ plugin-invoicing (Complet)
+- Génération automatique depuis CRA validés
+- Calcul TVA multi-taux
+- États de facturation (draft → sent → paid)
+- Gestion des avoirs
+- Relances automatiques
+- Export comptable
+
+### ✅ plugin-contracts (Complet)
+- Templates de contrats paramétrables
+- **Signature électronique** avec workflow token
+- Gestion des clauses et avenants
+- **Conformité documentaire** :
+  - Documents obligatoires par type de contrat
+  - Alertes d'expiration
+  - Score de conformité
+  - Validation/rejet avec commentaires
+
+### ✅ plugin-notifications (Complet)
+- **Multi-canal** : in-app, email, SMS, push
+- 28 types de notifications couvrant tout le workflow
+- Préférences utilisateur par canal
+- Heures de silence configurables
+- **Messagerie intégrée** :
+  - Conversations directes et groupes
+  - Contexte mission/RFP
+  - Pièces jointes
+  - Statuts de lecture
+
+### ✅ plugin-reporting (Complet)
+- **Dashboards personnalisables**
+  - 6 templates par rôle (admin, client, consultant, manager, commercial)
+  - Drag & drop widgets
+  - Thème clair/sombre
+- **22 catégories de KPIs** :
+  - Missions (actives, terminées, taux de remplissage)
+  - RFP (ouverts, taux de conversion)
+  - Consultants (utilisation, satisfaction)
+  - CRA (en attente, taux de rejet)
+  - Revenue (facturé, encaissé, créances)
+  - Marges
+- **16 types de widgets** : graphiques, jauges, tables, cartes
+- **Rapports programmés** : quotidien, hebdo, mensuel, trimestriel
+- **Export** : PDF, Excel, CSV, JSON
+
 ## Développement
 
 ### Structure des Plugins
@@ -153,87 +247,54 @@ cd nocobase && pnpm build
 # Démarrer en production
 cd nocobase && pnpm start
 
-# Créer un nouveau plugin
-cd nocobase && pnpm nocobase pm create @prestago/plugin-name
+# Activer un plugin
+pnpm nocobase pm enable @prestago/plugin-users
 ```
-
-## Plugins Développés
-
-### ✅ plugin-users (Complet)
-- Gestion utilisateurs (Freelance, ESN Admin/Commercial, Client Admin/Manager, Platform Admin)
-- Organisations avec hiérarchie parent/enfant
-- Authentification JWT (access + refresh tokens)
-- RBAC (Role-Based Access Control)
-- Multi-tenant avec isolation par organisation
-
-### ✅ plugin-skills-profiles (Complet)
-- **Compétences** : Hiérarchie, catégories, validation, aliases
-- **Profils Consultants** : Titre, résumé, disponibilité, tarifs
-- **Expériences** : Historique professionnel avec références
-- **Formations** : Diplômes, certifications académiques
-- **Certifications** : Avec vérification et expiration
-- **Langues** : Niveaux CEFR (A1-C2)
-- **Documents** : CV, diplômes, portfolios (MinIO)
-- **Calcul de Complétude** : Score automatique avec recommandations
-- **Recherche Avancée** : Filtres multi-critères, scoring de matching
-
-### 🔄 plugin-rfp (En développement)
-- Appels d'offres clients
-- Workflow de publication
-- Matching automatique
-
-### ⏳ Plugins à venir
-- plugin-applications - Candidatures & Matching IA
-- plugin-missions - Gestion des missions
-- plugin-timesheets - CRA avec validation multi-niveaux
-- plugin-invoicing - Facturation automatique
-- plugin-contracts - Contrats & DocuSign
-- plugin-notifications - Temps réel & emails
-- plugin-reporting - Dashboards & KPIs
 
 ## Déploiement
 
-### Hetzner Cloud
+### Option 1 : Nouveau Serveur Hetzner
 
 ```bash
-# Variables d'environnement
-export REMOTE_HOST=prestago.example.com
-export REMOTE_USER=root
-
-# Déployer
-./scripts/deploy.sh
+# Provisionner un nouveau serveur
+node scripts/provision-hetzner.cjs VOTRE_API_TOKEN_HETZNER
 ```
 
-### Configuration Production
+### Option 2 : Serveur Existant
 
-1. Créer un fichier `.env.production` avec les vraies valeurs
-2. Configurer les clés API (Claude, OpenAI, DocuSign)
-3. Configurer SSL via Traefik ou Nginx
-4. Mettre en place les backups PostgreSQL
+```bash
+# Déployer sur un serveur existant
+bash scripts/deploy-to-server.sh
+```
+
+Voir [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) pour le guide complet.
 
 ## Roadmap
 
-### Phase 1 - MVP Foundation ✅
+### Phase 1 - Foundation ✅
 - [x] Infrastructure Docker
 - [x] Plugin Users & Organizations
 - [x] Plugin Skills & Profiles
 
-### Phase 2 - Core Features (En cours)
-- [ ] Plugin RFP (Appels d'Offres)
-- [ ] Plugin Applications & Matching
-- [ ] Plugin Missions
-- [ ] Plugin Timesheets (CRA)
+### Phase 2 - Core Features ✅
+- [x] Plugin RFP (Appels d'Offres)
+- [x] Plugin Applications & Matching
+- [x] Plugin Missions
+- [x] Plugin Timesheets (CRA)
 
-### Phase 3 - Business Features
-- [ ] Plugin Invoicing
-- [ ] Plugin Contracts & DocuSign
-- [ ] Plugin Notifications
+### Phase 3 - Business Features ✅
+- [x] Plugin Invoicing
+- [x] Plugin Contracts & Compliance
+- [x] Plugin Notifications
 
-### Phase 4 - Advanced Features
-- [ ] Plugin Reporting & Analytics
-- [ ] AI Matching (Claude/OpenAI)
-- [ ] Multi-Tenant Full
-- [ ] Public API
+### Phase 4 - Analytics ✅
+- [x] Plugin Reporting & Dashboards
+
+### Phase 5 - Production (En cours)
+- [ ] Déploiement Hetzner
+- [ ] Tests E2E
+- [ ] Documentation API
+- [ ] Monitoring & Alerting
 
 ## Licence
 
