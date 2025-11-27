@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@playwright/test": "^1.57.0",
+    "node-ssh": "^13.2.1",
     "playwright": "^1.57.0"
   }
 }
