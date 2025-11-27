@@ -1,0 +1,164 @@
+{
+  "prestago-notifications": {
+    "title": "Notifications",
+    "menu": {
+      "notifications": "Notifications",
+      "messages": "Messages",
+      "settings": "Settings"
+    },
+    "notification": {
+      "title": "Title",
+      "content": "Content",
+      "type": "Type",
+      "priority": "Priority",
+      "status": "Status",
+      "channel": "Channel",
+      "sender": "Sender",
+      "sentAt": "Sent At",
+      "readAt": "Read At"
+    },
+    "notificationType": {
+      "system": "System",
+      "alert": "Alert",
+      "reminder": "Reminder",
+      "rfp_published": "RFP Published",
+      "rfp_matched": "RFP Match",
+      "application_received": "Application Received",
+      "application_status": "Application Status",
+      "mission_started": "Mission Started",
+      "mission_ending": "Mission Ending",
+      "mission_completed": "Mission Completed",
+      "timesheet_reminder": "Timesheet Reminder",
+      "timesheet_submitted": "Timesheet Submitted",
+      "timesheet_approved": "Timesheet Approved",
+      "timesheet_rejected": "Timesheet Rejected",
+      "invoice_created": "Invoice Created",
+      "invoice_sent": "Invoice Sent",
+      "invoice_overdue": "Invoice Overdue",
+      "payment_received": "Payment Received",
+      "contract_pending_signature": "Contract Pending Signature",
+      "contract_signed": "Contract Signed",
+      "contract_expiring": "Contract Expiring",
+      "compliance_doc_expiring": "Document Expiring",
+      "compliance_doc_expired": "Document Expired",
+      "compliance_doc_validated": "Document Validated",
+      "compliance_doc_rejected": "Document Rejected",
+      "new_message": "New Message",
+      "message_reply": "Message Reply"
+    },
+    "priority": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "status": {
+      "pending": "Pending",
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "read": "Read",
+      "failed": "Failed",
+      "archived": "Archived"
+    },
+    "channel": {
+      "in_app": "In-App",
+      "email": "Email",
+      "sms": "SMS",
+      "push": "Push"
+    },
+    "conversation": {
+      "title": "Conversations",
+      "newConversation": "New Conversation",
+      "participants": "Participants",
+      "lastMessage": "Last Message",
+      "unread": "Unread"
+    },
+    "conversationType": {
+      "direct": "Direct",
+      "group": "Group",
+      "mission": "Mission",
+      "rfp": "RFP",
+      "support": "Support"
+    },
+    "message": {
+      "title": "Messages",
+      "send": "Send",
+      "reply": "Reply",
+      "delete": "Delete",
+      "edit": "Edit",
+      "attachments": "Attachments",
+      "placeholder": "Write your message..."
+    },
+    "messageStatus": {
+      "draft": "Draft",
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "read": "Read",
+      "deleted": "Deleted"
+    },
+    "preferences": {
+      "title": "Notification Preferences",
+      "inApp": "In-App Notifications",
+      "email": "Email Notifications",
+      "sms": "SMS Notifications",
+      "push": "Push Notifications",
+      "quietHours": "Quiet Hours",
+      "quietHoursStart": "Start",
+      "quietHoursEnd": "End",
+      "enableAll": "Enable All",
+      "disableAll": "Disable All"
+    },
+    "emailTemplate": {
+      "title": "Email Templates",
+      "code": "Code",
+      "name": "Name",
+      "subject": "Subject",
+      "contentHtml": "HTML Content",
+      "contentText": "Text Content",
+      "variables": "Variables",
+      "language": "Language",
+      "isActive": "Active"
+    },
+    "actions": {
+      "markAsRead": "Mark as Read",
+      "markAllAsRead": "Mark All as Read",
+      "archive": "Archive",
+      "delete": "Delete",
+      "viewAll": "View All",
+      "reply": "Reply",
+      "forward": "Forward",
+      "createConversation": "New Conversation",
+      "addParticipant": "Add Participant",
+      "leaveConversation": "Leave Conversation",
+      "muteConversation": "Mute Conversation"
+    },
+    "messages": {
+      "noNotifications": "No notifications",
+      "noMessages": "No messages",
+      "noConversations": "No conversations",
+      "loadingMore": "Loading...",
+      "messageSent": "Message sent",
+      "messageDeleted": "Message deleted",
+      "markedAsRead": "Marked as read",
+      "allMarkedAsRead": "All notifications marked as read",
+      "preferencesUpdated": "Preferences updated",
+      "error": "An error occurred"
+    },
+    "time": {
+      "now": "Just now",
+      "minutesAgo": "{count} min ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count} day(s) ago",
+      "yesterday": "Yesterday",
+      "thisWeek": "This week"
+    },
+    "filters": {
+      "all": "All",
+      "unread": "Unread",
+      "read": "Read",
+      "archived": "Archived",
+      "byType": "By Type",
+      "byPriority": "By Priority"
+    }
+  }
+}

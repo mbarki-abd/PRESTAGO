@@ -1,0 +1,164 @@
+{
+  "prestago-notifications": {
+    "title": "Notifications",
+    "menu": {
+      "notifications": "Notifications",
+      "messages": "Messages",
+      "settings": "Paramètres"
+    },
+    "notification": {
+      "title": "Titre",
+      "content": "Contenu",
+      "type": "Type",
+      "priority": "Priorité",
+      "status": "Statut",
+      "channel": "Canal",
+      "sender": "Expéditeur",
+      "sentAt": "Envoyée le",
+      "readAt": "Lue le"
+    },
+    "notificationType": {
+      "system": "Système",
+      "alert": "Alerte",
+      "reminder": "Rappel",
+      "rfp_published": "RFP publié",
+      "rfp_matched": "Correspondance RFP",
+      "application_received": "Candidature reçue",
+      "application_status": "Statut candidature",
+      "mission_started": "Mission démarrée",
+      "mission_ending": "Mission se termine",
+      "mission_completed": "Mission terminée",
+      "timesheet_reminder": "Rappel CRA",
+      "timesheet_submitted": "CRA soumis",
+      "timesheet_approved": "CRA approuvé",
+      "timesheet_rejected": "CRA rejeté",
+      "invoice_created": "Facture créée",
+      "invoice_sent": "Facture envoyée",
+      "invoice_overdue": "Facture en retard",
+      "payment_received": "Paiement reçu",
+      "contract_pending_signature": "Contrat à signer",
+      "contract_signed": "Contrat signé",
+      "contract_expiring": "Contrat expire bientôt",
+      "compliance_doc_expiring": "Document expire bientôt",
+      "compliance_doc_expired": "Document expiré",
+      "compliance_doc_validated": "Document validé",
+      "compliance_doc_rejected": "Document rejeté",
+      "new_message": "Nouveau message",
+      "message_reply": "Réponse à un message"
+    },
+    "priority": {
+      "low": "Basse",
+      "normal": "Normale",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "status": {
+      "pending": "En attente",
+      "sent": "Envoyée",
+      "delivered": "Délivrée",
+      "read": "Lue",
+      "failed": "Échec",
+      "archived": "Archivée"
+    },
+    "channel": {
+      "in_app": "Application",
+      "email": "Email",
+      "sms": "SMS",
+      "push": "Push"
+    },
+    "conversation": {
+      "title": "Conversations",
+      "newConversation": "Nouvelle conversation",
+      "participants": "Participants",
+      "lastMessage": "Dernier message",
+      "unread": "Non lu(s)"
+    },
+    "conversationType": {
+      "direct": "Direct",
+      "group": "Groupe",
+      "mission": "Mission",
+      "rfp": "RFP",
+      "support": "Support"
+    },
+    "message": {
+      "title": "Messages",
+      "send": "Envoyer",
+      "reply": "Répondre",
+      "delete": "Supprimer",
+      "edit": "Modifier",
+      "attachments": "Pièces jointes",
+      "placeholder": "Écrivez votre message..."
+    },
+    "messageStatus": {
+      "draft": "Brouillon",
+      "sent": "Envoyé",
+      "delivered": "Délivré",
+      "read": "Lu",
+      "deleted": "Supprimé"
+    },
+    "preferences": {
+      "title": "Préférences de notification",
+      "inApp": "Notifications dans l'application",
+      "email": "Notifications par email",
+      "sms": "Notifications par SMS",
+      "push": "Notifications push",
+      "quietHours": "Heures de silence",
+      "quietHoursStart": "Début",
+      "quietHoursEnd": "Fin",
+      "enableAll": "Tout activer",
+      "disableAll": "Tout désactiver"
+    },
+    "emailTemplate": {
+      "title": "Modèles d'email",
+      "code": "Code",
+      "name": "Nom",
+      "subject": "Sujet",
+      "contentHtml": "Contenu HTML",
+      "contentText": "Contenu texte",
+      "variables": "Variables",
+      "language": "Langue",
+      "isActive": "Actif"
+    },
+    "actions": {
+      "markAsRead": "Marquer comme lu",
+      "markAllAsRead": "Tout marquer comme lu",
+      "archive": "Archiver",
+      "delete": "Supprimer",
+      "viewAll": "Voir tout",
+      "reply": "Répondre",
+      "forward": "Transférer",
+      "createConversation": "Nouvelle conversation",
+      "addParticipant": "Ajouter un participant",
+      "leaveConversation": "Quitter la conversation",
+      "muteConversation": "Mettre en sourdine"
+    },
+    "messages": {
+      "noNotifications": "Aucune notification",
+      "noMessages": "Aucun message",
+      "noConversations": "Aucune conversation",
+      "loadingMore": "Chargement...",
+      "messageSent": "Message envoyé",
+      "messageDeleted": "Message supprimé",
+      "markedAsRead": "Marqué comme lu",
+      "allMarkedAsRead": "Toutes les notifications ont été lues",
+      "preferencesUpdated": "Préférences mises à jour",
+      "error": "Une erreur est survenue"
+    },
+    "time": {
+      "now": "À l'instant",
+      "minutesAgo": "Il y a {count} min",
+      "hoursAgo": "Il y a {count}h",
+      "daysAgo": "Il y a {count} jour(s)",
+      "yesterday": "Hier",
+      "thisWeek": "Cette semaine"
+    },
+    "filters": {
+      "all": "Toutes",
+      "unread": "Non lues",
+      "read": "Lues",
+      "archived": "Archivées",
+      "byType": "Par type",
+      "byPriority": "Par priorité"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "@prestago/plugin-notifications",
+  "version": "1.0.0",
+  "description": "PRESTAGO - Système de notifications et messagerie",
+  "main": "lib/server/index.js",
+  "types": "lib/server/index.d.ts",
+  "keywords": [
+    "nocobase",
+    "prestago",
+    "notifications",
+    "messaging",
+    "email",
+    "alerts"
+  ],
+  "author": "ILINQSOFT",
+  "license": "AGPL-3.0",
+  "peerDependencies": {
+    "@nocobase/server": "^1.x",
+    "@nocobase/database": "^1.x",
+    "@nocobase/client": "^1.x"
+  },
+  "dependencies": {
+    "@prestago/plugin-users": "^1.0.0",
+    "nodemailer": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.0",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  }
+}
