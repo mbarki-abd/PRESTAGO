@@ -339,12 +339,15 @@ async function main() {
   console.log('============================================');
   console.log('');
 
-  // Check for API token
-  const apiToken = process.env.HETZNER_API_TOKEN;
+  // Check for API token (command line argument or environment variable)
+  const apiToken = process.argv[2] || process.env.HETZNER_API_TOKEN;
   if (!apiToken) {
-    console.error('❌ HETZNER_API_TOKEN environment variable is not set');
+    console.error('❌ HETZNER_API_TOKEN not provided');
     console.log('');
-    console.log('To set the token:');
+    console.log('Usage:');
+    console.log('  node provision-hetzner.cjs YOUR_API_TOKEN');
+    console.log('');
+    console.log('Or set environment variable:');
     console.log('  Windows: set HETZNER_API_TOKEN=your-token');
     console.log('  Linux/Mac: export HETZNER_API_TOKEN=your-token');
     console.log('');
