@@ -1,0 +1,223 @@
+{
+  "prestago-timesheets": {
+    "title": "CRA",
+    "menu": {
+      "timesheets": "Mes CRA",
+      "pendingApprovals": "Approbations en attente",
+      "absences": "Mes absences",
+      "holidays": "Jours fériés",
+      "calendar": "Calendrier"
+    },
+    "timesheet": {
+      "reference": "Référence",
+      "mission": "Mission",
+      "consultant": "Consultant",
+      "periodType": "Type de période",
+      "periodStart": "Début de période",
+      "periodEnd": "Fin de période",
+      "year": "Année",
+      "month": "Mois",
+      "weekNumber": "Semaine",
+      "totalWorkedDays": "Jours travaillés",
+      "totalWorkedHours": "Heures travaillées",
+      "totalBillableDays": "Jours facturables",
+      "totalBillableHours": "Heures facturables",
+      "totalAbsenceDays": "Jours d'absence",
+      "totalOvertimeHours": "Heures supplémentaires",
+      "totalAmount": "Montant total",
+      "status": "Statut",
+      "currentApprovalLevel": "Niveau d'approbation actuel",
+      "requiredApprovalLevels": "Niveaux requis",
+      "submittedAt": "Soumis le",
+      "approvedAt": "Approuvé le",
+      "rejectionReason": "Motif de rejet",
+      "revisionNotes": "Notes de révision",
+      "consultantComments": "Commentaires"
+    },
+    "status": {
+      "draft": "Brouillon",
+      "submitted": "Soumis",
+      "pending_level_1": "Approbation niveau 1",
+      "pending_level_2": "Approbation niveau 2",
+      "pending_level_3": "Approbation niveau 3",
+      "approved": "Approuvé",
+      "rejected": "Rejeté",
+      "revision_requested": "Révision demandée"
+    },
+    "periodType": {
+      "weekly": "Hebdomadaire",
+      "biweekly": "Bihebdomadaire",
+      "monthly": "Mensuel"
+    },
+    "entry": {
+      "date": "Date",
+      "dayOfWeek": "Jour",
+      "dayType": "Type",
+      "hoursWorked": "Heures",
+      "dayFraction": "Fraction",
+      "workLocation": "Lieu",
+      "description": "Description",
+      "taskReference": "Référence tâche",
+      "isBillable": "Facturable",
+      "billableHours": "H. facturables",
+      "overtimeHours": "H. sup.",
+      "startTime": "Début",
+      "endTime": "Fin",
+      "breakDuration": "Pause"
+    },
+    "dayType": {
+      "worked": "Travaillé",
+      "weekend": "Week-end",
+      "holiday": "Férié",
+      "vacation": "Congé payé",
+      "sick_leave": "Maladie",
+      "rtt": "RTT",
+      "unpaid": "Sans solde",
+      "remote": "Télétravail",
+      "onsite": "Sur site",
+      "training": "Formation",
+      "other": "Autre"
+    },
+    "workLocation": {
+      "onsite": "Sur site",
+      "remote": "Télétravail",
+      "travel": "Déplacement"
+    },
+    "approval": {
+      "title": "Approbations",
+      "level": "Niveau",
+      "approver": "Approbateur",
+      "decision": "Décision",
+      "comments": "Commentaires",
+      "decidedAt": "Date de décision"
+    },
+    "approvalLevel": {
+      "level_1": "Niveau 1 (Manager)",
+      "level_2": "Niveau 2 (Client)",
+      "level_3": "Niveau 3 (Admin)"
+    },
+    "decision": {
+      "approved": "Approuvé",
+      "rejected": "Rejeté",
+      "revision_requested": "Révision demandée"
+    },
+    "absence": {
+      "title": "Absences",
+      "type": "Type",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "startHalfDay": "Début",
+      "endHalfDay": "Fin",
+      "totalDays": "Nombre de jours",
+      "reason": "Motif",
+      "status": "Statut",
+      "approvedBy": "Approuvé par",
+      "approvedAt": "Date d'approbation",
+      "rejectionReason": "Motif de rejet",
+      "attachments": "Justificatifs"
+    },
+    "absenceType": {
+      "vacation": "Congé payé",
+      "sick_leave": "Arrêt maladie",
+      "rtt": "RTT",
+      "unpaid": "Sans solde",
+      "maternity": "Maternité",
+      "paternity": "Paternité",
+      "family_event": "Événement familial",
+      "training": "Formation",
+      "other": "Autre"
+    },
+    "absenceStatus": {
+      "draft": "Brouillon",
+      "pending": "En attente",
+      "approved": "Approuvée",
+      "rejected": "Rejetée",
+      "cancelled": "Annulée"
+    },
+    "halfDay": {
+      "full": "Journée complète",
+      "morning": "Matin",
+      "afternoon": "Après-midi"
+    },
+    "holiday": {
+      "title": "Jours fériés",
+      "name": "Nom",
+      "date": "Date",
+      "country": "Pays",
+      "isRegional": "Régional",
+      "regions": "Régions"
+    },
+    "actions": {
+      "create": "Créer un CRA",
+      "edit": "Modifier",
+      "submit": "Soumettre",
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "requestRevision": "Demander révision",
+      "resetToDraft": "Remettre en brouillon",
+      "recalculate": "Recalculer",
+      "print": "Imprimer",
+      "export": "Exporter",
+      "createAbsence": "Demander une absence",
+      "cancelAbsence": "Annuler"
+    },
+    "messages": {
+      "timesheetCreated": "CRA créé avec succès",
+      "timesheetSubmitted": "CRA soumis pour approbation",
+      "timesheetApproved": "CRA approuvé",
+      "timesheetRejected": "CRA rejeté",
+      "revisionRequested": "Révision demandée",
+      "absenceCreated": "Demande d'absence créée",
+      "absenceSubmitted": "Demande d'absence soumise",
+      "absenceApproved": "Absence approuvée",
+      "absenceRejected": "Absence rejetée",
+      "absenceCancelled": "Absence annulée",
+      "entryUpdated": "Entrée mise à jour",
+      "totalsRecalculated": "Totaux recalculés",
+      "error": "Une erreur s'est produite"
+    },
+    "tabs": {
+      "entries": "Saisie",
+      "summary": "Récapitulatif",
+      "approvals": "Approbations",
+      "history": "Historique"
+    },
+    "stats": {
+      "totalTimesheets": "Total CRA",
+      "pendingApproval": "En attente",
+      "approved": "Approuvés",
+      "rejected": "Rejetés",
+      "totalBilledDays": "Jours facturés",
+      "totalBilledAmount": "Montant facturé",
+      "averageApprovalTime": "Temps moyen d'approbation"
+    },
+    "reminders": {
+      "submissionDue": "Date limite de soumission: {date}",
+      "pendingApproval": "CRA en attente de votre approbation",
+      "revisionNeeded": "CRA nécessitant une révision"
+    },
+    "weekdays": {
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mer",
+      "thursday": "Jeu",
+      "friday": "Ven",
+      "saturday": "Sam",
+      "sunday": "Dim"
+    },
+    "months": {
+      "january": "Janvier",
+      "february": "Février",
+      "march": "Mars",
+      "april": "Avril",
+      "may": "Mai",
+      "june": "Juin",
+      "july": "Juillet",
+      "august": "Août",
+      "september": "Septembre",
+      "october": "Octobre",
+      "november": "Novembre",
+      "december": "Décembre"
+    }
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "prestago-timesheets": {
+    "title": "Timesheets",
+    "menu": {
+      "timesheets": "My Timesheets",
+      "pendingApprovals": "Pending Approvals",
+      "absences": "My Absences",
+      "holidays": "Holidays",
+      "calendar": "Calendar"
+    },
+    "timesheet": {
+      "reference": "Reference",
+      "mission": "Mission",
+      "consultant": "Consultant",
+      "periodType": "Period Type",
+      "periodStart": "Period Start",
+      "periodEnd": "Period End",
+      "year": "Year",
+      "month": "Month",
+      "weekNumber": "Week",
+      "totalWorkedDays": "Worked Days",
+      "totalWorkedHours": "Worked Hours",
+      "totalBillableDays": "Billable Days",
+      "totalBillableHours": "Billable Hours",
+      "totalAbsenceDays": "Absence Days",
+      "totalOvertimeHours": "Overtime Hours",
+      "totalAmount": "Total Amount",
+      "status": "Status",
+      "currentApprovalLevel": "Current Approval Level",
+      "requiredApprovalLevels": "Required Levels",
+      "submittedAt": "Submitted At",
+      "approvedAt": "Approved At",
+      "rejectionReason": "Rejection Reason",
+      "revisionNotes": "Revision Notes",
+      "consultantComments": "Comments"
+    },
+    "status": {
+      "draft": "Draft",
+      "submitted": "Submitted",
+      "pending_level_1": "Level 1 Approval",
+      "pending_level_2": "Level 2 Approval",
+      "pending_level_3": "Level 3 Approval",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "revision_requested": "Revision Requested"
+    },
+    "periodType": {
+      "weekly": "Weekly",
+      "biweekly": "Biweekly",
+      "monthly": "Monthly"
+    },
+    "entry": {
+      "date": "Date",
+      "dayOfWeek": "Day",
+      "dayType": "Type",
+      "hoursWorked": "Hours",
+      "dayFraction": "Fraction",
+      "workLocation": "Location",
+      "description": "Description",
+      "taskReference": "Task Reference",
+      "isBillable": "Billable",
+      "billableHours": "Billable Hours",
+      "overtimeHours": "Overtime",
+      "startTime": "Start",
+      "endTime": "End",
+      "breakDuration": "Break"
+    },
+    "dayType": {
+      "worked": "Worked",
+      "weekend": "Weekend",
+      "holiday": "Holiday",
+      "vacation": "Vacation",
+      "sick_leave": "Sick Leave",
+      "rtt": "RTT",
+      "unpaid": "Unpaid Leave",
+      "remote": "Remote",
+      "onsite": "On-site",
+      "training": "Training",
+      "other": "Other"
+    },
+    "workLocation": {
+      "onsite": "On-site",
+      "remote": "Remote",
+      "travel": "Travel"
+    },
+    "approval": {
+      "title": "Approvals",
+      "level": "Level",
+      "approver": "Approver",
+      "decision": "Decision",
+      "comments": "Comments",
+      "decidedAt": "Decision Date"
+    },
+    "approvalLevel": {
+      "level_1": "Level 1 (Manager)",
+      "level_2": "Level 2 (Client)",
+      "level_3": "Level 3 (Admin)"
+    },
+    "decision": {
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "revision_requested": "Revision Requested"
+    },
+    "absence": {
+      "title": "Absences",
+      "type": "Type",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "startHalfDay": "Start",
+      "endHalfDay": "End",
+      "totalDays": "Total Days",
+      "reason": "Reason",
+      "status": "Status",
+      "approvedBy": "Approved By",
+      "approvedAt": "Approved At",
+      "rejectionReason": "Rejection Reason",
+      "attachments": "Attachments"
+    },
+    "absenceType": {
+      "vacation": "Vacation",
+      "sick_leave": "Sick Leave",
+      "rtt": "RTT",
+      "unpaid": "Unpaid Leave",
+      "maternity": "Maternity",
+      "paternity": "Paternity",
+      "family_event": "Family Event",
+      "training": "Training",
+      "other": "Other"
+    },
+    "absenceStatus": {
+      "draft": "Draft",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    },
+    "halfDay": {
+      "full": "Full Day",
+      "morning": "Morning",
+      "afternoon": "Afternoon"
+    },
+    "holiday": {
+      "title": "Holidays",
+      "name": "Name",
+      "date": "Date",
+      "country": "Country",
+      "isRegional": "Regional",
+      "regions": "Regions"
+    },
+    "actions": {
+      "create": "Create Timesheet",
+      "edit": "Edit",
+      "submit": "Submit",
+      "approve": "Approve",
+      "reject": "Reject",
+      "requestRevision": "Request Revision",
+      "resetToDraft": "Reset to Draft",
+      "recalculate": "Recalculate",
+      "print": "Print",
+      "export": "Export",
+      "createAbsence": "Request Absence",
+      "cancelAbsence": "Cancel"
+    },
+    "messages": {
+      "timesheetCreated": "Timesheet created successfully",
+      "timesheetSubmitted": "Timesheet submitted for approval",
+      "timesheetApproved": "Timesheet approved",
+      "timesheetRejected": "Timesheet rejected",
+      "revisionRequested": "Revision requested",
+      "absenceCreated": "Absence request created",
+      "absenceSubmitted": "Absence request submitted",
+      "absenceApproved": "Absence approved",
+      "absenceRejected": "Absence rejected",
+      "absenceCancelled": "Absence cancelled",
+      "entryUpdated": "Entry updated",
+      "totalsRecalculated": "Totals recalculated",
+      "error": "An error occurred"
+    },
+    "tabs": {
+      "entries": "Entries",
+      "summary": "Summary",
+      "approvals": "Approvals",
+      "history": "History"
+    },
+    "stats": {
+      "totalTimesheets": "Total Timesheets",
+      "pendingApproval": "Pending Approval",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "totalBilledDays": "Billed Days",
+      "totalBilledAmount": "Billed Amount",
+      "averageApprovalTime": "Avg. Approval Time"
+    },
+    "reminders": {
+      "submissionDue": "Submission deadline: {date}",
+      "pendingApproval": "Timesheets pending your approval",
+      "revisionNeeded": "Timesheets needing revision"
+    },
+    "weekdays": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun"
+    },
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  }
+}
