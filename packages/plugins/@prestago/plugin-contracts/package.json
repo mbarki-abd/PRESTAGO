@@ -1,0 +1,32 @@
+{
+  "name": "@prestago/plugin-contracts",
+  "version": "1.0.0",
+  "description": "PRESTAGO - Gestion des contrats et conformité",
+  "main": "lib/server/index.js",
+  "types": "lib/server/index.d.ts",
+  "keywords": [
+    "nocobase",
+    "prestago",
+    "contracts",
+    "compliance",
+    "documents"
+  ],
+  "author": "ILINQSOFT",
+  "license": "AGPL-3.0",
+  "peerDependencies": {
+    "@nocobase/server": "^1.x",
+    "@nocobase/database": "^1.x",
+    "@nocobase/client": "^1.x"
+  },
+  "dependencies": {
+    "@prestago/plugin-users": "^1.0.0",
+    "@prestago/plugin-missions": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  }
+}
