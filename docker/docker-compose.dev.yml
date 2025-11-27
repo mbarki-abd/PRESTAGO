@@ -1,0 +1,112 @@
+# =============================================================================
+# PRESTAGO - Docker Compose Development Override
+# =============================================================================
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # ===========================================================================
+  # NocoBase Application - Development
+  # ===========================================================================
+  app:
+    environment:
+      - NODE_ENV=development
+      - DB_LOGGING=true
+      - APP_ENV=development
+    volumes:
+      # Hot reload for plugin development
+      - ../packages/plugins/@prestago:/app/nocobase/packages/plugins/@prestago:delegated
+      - ./storage:/app/nocobase/storage:delegated
+    # Enable debugging
+    ports:
+      - "13000:13000"
+      - "9229:9229"  # Node.js debugger
+
+  # ===========================================================================
+  # PostgreSQL - Development
+  # ===========================================================================
+  postgres:
+    ports:
+      - "5432:5432"
+    # Persist data between restarts
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  # ===========================================================================
+  # Redis - Development
+  # ===========================================================================
+  redis:
+    ports:
+      - "6379:6379"
+
+  # ===========================================================================
+  # MinIO - Development
+  # ===========================================================================
+  minio:
+    ports:
+      - "9000:9000"
+      - "9001:9001"  # Console
+
+  # ===========================================================================
+  # Meilisearch - Development
+  # ===========================================================================
+  meilisearch:
+    environment:
+      - MEILI_ENV=development
+    ports:
+      - "7700:7700"
+
+  # ===========================================================================
+  # Adminer - Database GUI (Development Only)
+  # ===========================================================================
+  adminer:
+    image: adminer:latest
+    container_name: prestago-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - ADMINER_DEFAULT_SERVER=postgres
+      - ADMINER_DESIGN=pepa-linha
+    depends_on:
+      - postgres
+    networks:
+      - prestago-network
+
+  # ===========================================================================
+  # RedisInsight - Redis GUI (Development Only)
+  # ===========================================================================
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    container_name: prestago-redis-insight
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    volumes:
+      - redis-insight-data:/db
+    depends_on:
+      - redis
+    networks:
+      - prestago-network
+
+  # ===========================================================================
+  # Mailhog - Email Testing (Development Only)
+  # ===========================================================================
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: prestago-mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Web UI
+    networks:
+      - prestago-network
+
+# =============================================================================
+# Additional Volumes for Development
+# =============================================================================
+volumes:
+  redis-insight-data:
+    name: prestago-redis-insight-data

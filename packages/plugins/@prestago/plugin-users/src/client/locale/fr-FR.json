@@ -1,0 +1,121 @@
+{
+  "prestago-users": {
+    "title": "Utilisateurs",
+    "menu": {
+      "users": "Utilisateurs",
+      "organizations": "Organisations",
+      "roles": "Rôles"
+    },
+    "user": {
+      "email": "Email",
+      "password": "Mot de passe",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "fullName": "Nom complet",
+      "phone": "Téléphone",
+      "avatar": "Avatar",
+      "userType": "Type d'utilisateur",
+      "status": "Statut",
+      "emailVerified": "Email vérifié",
+      "lastLogin": "Dernière connexion",
+      "createdAt": "Créé le",
+      "updatedAt": "Modifié le"
+    },
+    "userType": {
+      "freelance": "Freelance",
+      "esn_admin": "Administrateur ESN",
+      "esn_commercial": "Commercial ESN",
+      "client_admin": "Administrateur Client",
+      "client_manager": "Manager Client",
+      "platform_admin": "Administrateur Plateforme"
+    },
+    "userStatus": {
+      "pending": "En attente",
+      "active": "Actif",
+      "suspended": "Suspendu",
+      "deleted": "Supprimé"
+    },
+    "organization": {
+      "name": "Nom",
+      "type": "Type",
+      "legalName": "Raison sociale",
+      "siret": "SIRET",
+      "vatNumber": "Numéro TVA",
+      "address": "Adresse",
+      "street": "Rue",
+      "city": "Ville",
+      "postalCode": "Code postal",
+      "country": "Pays",
+      "logo": "Logo",
+      "website": "Site web",
+      "description": "Description",
+      "status": "Statut",
+      "parent": "Organisation parente"
+    },
+    "organizationType": {
+      "esn": "ESN (Société de services)",
+      "client": "Client (Entreprise)",
+      "platform": "Plateforme"
+    },
+    "organizationStatus": {
+      "pending": "En attente de vérification",
+      "verified": "Vérifié",
+      "active": "Actif",
+      "suspended": "Suspendu"
+    },
+    "organizationRole": {
+      "owner": "Propriétaire",
+      "admin": "Administrateur",
+      "manager": "Manager",
+      "member": "Membre"
+    },
+    "auth": {
+      "login": "Connexion",
+      "register": "Inscription",
+      "logout": "Déconnexion",
+      "forgotPassword": "Mot de passe oublié ?",
+      "resetPassword": "Réinitialiser le mot de passe",
+      "verifyEmail": "Vérifier l'email",
+      "loginTitle": "Connectez-vous à PRESTAGO",
+      "registerTitle": "Créez votre compte PRESTAGO",
+      "emailPlaceholder": "votre@email.com",
+      "passwordPlaceholder": "Votre mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "rememberMe": "Se souvenir de moi",
+      "noAccount": "Pas encore de compte ?",
+      "hasAccount": "Déjà un compte ?",
+      "createAccount": "Créer un compte",
+      "signIn": "Se connecter"
+    },
+    "validation": {
+      "emailRequired": "L'email est requis",
+      "emailInvalid": "L'email n'est pas valide",
+      "passwordRequired": "Le mot de passe est requis",
+      "passwordMinLength": "Le mot de passe doit contenir au moins {min} caractères",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "firstNameRequired": "Le prénom est requis",
+      "lastNameRequired": "Le nom est requis"
+    },
+    "messages": {
+      "loginSuccess": "Connexion réussie",
+      "loginError": "Erreur de connexion",
+      "registerSuccess": "Compte créé avec succès",
+      "registerError": "Erreur lors de la création du compte",
+      "logoutSuccess": "Déconnexion réussie",
+      "updateSuccess": "Mise à jour réussie",
+      "updateError": "Erreur lors de la mise à jour"
+    },
+    "actions": {
+      "create": "Créer",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "invite": "Inviter",
+      "activate": "Activer",
+      "suspend": "Suspendre",
+      "verify": "Vérifier"
+    }
+  }
+}

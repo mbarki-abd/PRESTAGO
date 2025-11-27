@@ -1,0 +1,167 @@
+# =============================================================================
+# PRESTAGO - Docker Compose Production Override
+# =============================================================================
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # ===========================================================================
+  # NocoBase Application - Production
+  # ===========================================================================
+  app:
+    environment:
+      - NODE_ENV=production
+      - DB_LOGGING=false
+      - APP_ENV=production
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ===========================================================================
+  # PostgreSQL - Production
+  # ===========================================================================
+  postgres:
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Don't expose port in production (use internal network)
+    ports: []
+
+  # ===========================================================================
+  # Redis - Production
+  # ===========================================================================
+  redis:
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru ${REDIS_PASSWORD:+--requirepass ${REDIS_PASSWORD}}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports: []
+
+  # ===========================================================================
+  # MinIO - Production
+  # ===========================================================================
+  minio:
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Only expose API port, not console in production
+    ports:
+      - "9000:9000"
+
+  # ===========================================================================
+  # Meilisearch - Production
+  # ===========================================================================
+  meilisearch:
+    environment:
+      - MEILI_ENV=production
+      - MEILI_NO_ANALYTICS=true
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports: []
+
+  # ===========================================================================
+  # Traefik Reverse Proxy - Production
+  # ===========================================================================
+  traefik:
+    image: traefik:v3.0
+    container_name: prestago-traefik
+    restart: unless-stopped
+    command:
+      - "--api.dashboard=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.letsencrypt.acme.email=${ACME_EMAIL:-admin@prestago.io}"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      # Redirect HTTP to HTTPS
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-certificates:/letsencrypt
+    networks:
+      - prestago-network
+    labels:
+      - "traefik.enable=true"
+
+  # ===========================================================================
+  # App Labels for Traefik
+  # ===========================================================================
+  app:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prestago.rule=Host(`${APP_DOMAIN:-prestago.io}`)"
+      - "traefik.http.routers.prestago.entrypoints=websecure"
+      - "traefik.http.routers.prestago.tls.certresolver=letsencrypt"
+      - "traefik.http.services.prestago.loadbalancer.server.port=13000"
+
+# =============================================================================
+# Additional Volumes for Production
+# =============================================================================
+volumes:
+  traefik-certificates:
+    name: prestago-traefik-certificates

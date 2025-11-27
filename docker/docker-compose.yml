@@ -1,0 +1,164 @@
+# =============================================================================
+# PRESTAGO - Docker Compose Base Configuration
+# =============================================================================
+# Usage:
+#   Development: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+#   Production:  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # ===========================================================================
+  # NocoBase Application
+  # ===========================================================================
+  app:
+    image: nocobase/nocobase:latest
+    container_name: prestago-app
+    restart: unless-stopped
+    environment:
+      # Database
+      - DB_DIALECT=postgres
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=${DB_DATABASE:-prestago}
+      - DB_USER=${DB_USER:-prestago}
+      - DB_PASSWORD=${DB_PASSWORD:-prestago_secret}
+      - DB_LOGGING=${DB_LOGGING:-true}
+      # Application
+      - APP_KEY=${APP_KEY:-prestago-secret-key}
+      - APP_PORT=13000
+      - API_BASE_PATH=/api/
+      # Timezone
+      - TZ=Europe/Paris
+    volumes:
+      - ./storage:/app/nocobase/storage
+      - ../packages/plugins/@prestago:/app/nocobase/packages/plugins/@prestago
+    ports:
+      - "${APP_PORT:-13000}:13000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - prestago-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:13000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ===========================================================================
+  # PostgreSQL Database
+  # ===========================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: prestago-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_DATABASE:-prestago}
+      - POSTGRES_USER=${DB_USER:-prestago}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-prestago_secret}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    networks:
+      - prestago-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-prestago} -d ${DB_DATABASE:-prestago}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ===========================================================================
+  # Redis Cache
+  # ===========================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: prestago-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes ${REDIS_PASSWORD:+--requirepass ${REDIS_PASSWORD}}
+    volumes:
+      - redis-data:/data
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    networks:
+      - prestago-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ===========================================================================
+  # MinIO Object Storage (S3 Compatible)
+  # ===========================================================================
+  minio:
+    image: minio/minio:latest
+    container_name: prestago-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ACCESS_KEY:-prestago_access}
+      - MINIO_ROOT_PASSWORD=${MINIO_SECRET_KEY:-prestago_secret}
+    volumes:
+      - minio-data:/data
+    ports:
+      - "${MINIO_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    networks:
+      - prestago-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===========================================================================
+  # Meilisearch Full-Text Search
+  # ===========================================================================
+  meilisearch:
+    image: getmeili/meilisearch:v1.5
+    container_name: prestago-meilisearch
+    restart: unless-stopped
+    environment:
+      - MEILI_MASTER_KEY=${MEILISEARCH_API_KEY:-prestago_meili_key}
+      - MEILI_ENV=${APP_ENV:-development}
+    volumes:
+      - meilisearch-data:/meili_data
+    ports:
+      - "${MEILISEARCH_PORT:-7700}:7700"
+    networks:
+      - prestago-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7700/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  prestago-network:
+    driver: bridge
+    name: prestago-network
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  postgres-data:
+    name: prestago-postgres-data
+  redis-data:
+    name: prestago-redis-data
+  minio-data:
+    name: prestago-minio-data
+  meilisearch-data:
+    name: prestago-meilisearch-data
