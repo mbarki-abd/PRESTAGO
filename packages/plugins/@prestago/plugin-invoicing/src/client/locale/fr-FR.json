@@ -1,0 +1,202 @@
+{
+  "prestago-invoicing": {
+    "title": "Facturation",
+    "menu": {
+      "invoices": "Factures",
+      "myInvoices": "Mes Factures",
+      "pendingPayments": "Paiements en attente",
+      "overdue": "Factures en retard",
+      "creditNotes": "Avoirs",
+      "billingSettings": "Paramètres de facturation"
+    },
+    "invoice": {
+      "number": "N° Facture",
+      "type": "Type",
+      "status": "Statut",
+      "mission": "Mission",
+      "timesheet": "CRA",
+      "clientOrganization": "Client",
+      "consultantOrganization": "Prestataire",
+      "relatedInvoice": "Facture liée",
+      "issueDate": "Date d'émission",
+      "dueDate": "Date d'échéance",
+      "sentDate": "Date d'envoi",
+      "paidDate": "Date de paiement",
+      "periodStart": "Début de période",
+      "periodEnd": "Fin de période",
+      "subtotal": "Sous-total HT",
+      "vatRate": "Taux TVA",
+      "vatAmount": "Montant TVA",
+      "totalAmount": "Total TTC",
+      "paidAmount": "Montant payé",
+      "balanceDue": "Reste à payer",
+      "currency": "Devise",
+      "paymentTerms": "Conditions de paiement",
+      "notes": "Notes",
+      "internalNotes": "Notes internes",
+      "validatedBy": "Validée par",
+      "validatedAt": "Date de validation",
+      "createdBy": "Créée par"
+    },
+    "invoiceType": {
+      "standard": "Facture standard",
+      "proforma": "Facture proforma",
+      "credit_note": "Avoir",
+      "advance": "Acompte",
+      "final": "Facture finale"
+    },
+    "status": {
+      "draft": "Brouillon",
+      "pending_validation": "En attente de validation",
+      "validated": "Validée",
+      "sent": "Envoyée",
+      "partially_paid": "Partiellement payée",
+      "paid": "Payée",
+      "overdue": "En retard",
+      "cancelled": "Annulée",
+      "credited": "Avoir émis"
+    },
+    "line": {
+      "title": "Lignes de facture",
+      "order": "Ordre",
+      "description": "Description",
+      "quantity": "Quantité",
+      "unit": "Unité",
+      "unitPrice": "Prix unitaire",
+      "vatRate": "TVA",
+      "discount": "Remise",
+      "lineTotal": "Total ligne"
+    },
+    "payment": {
+      "title": "Paiements",
+      "amount": "Montant",
+      "currency": "Devise",
+      "method": "Mode de paiement",
+      "status": "Statut",
+      "reference": "Référence",
+      "receivedDate": "Date de réception",
+      "notes": "Notes",
+      "recordedBy": "Enregistré par"
+    },
+    "paymentMethod": {
+      "bank_transfer": "Virement bancaire",
+      "check": "Chèque",
+      "card": "Carte bancaire",
+      "cash": "Espèces",
+      "direct_debit": "Prélèvement",
+      "paypal": "PayPal",
+      "other": "Autre"
+    },
+    "paymentStatus": {
+      "pending": "En attente",
+      "received": "Reçu",
+      "validated": "Validé",
+      "rejected": "Rejeté",
+      "refunded": "Remboursé"
+    },
+    "paymentTerms": {
+      "immediate": "Paiement immédiat",
+      "net_7": "Net 7 jours",
+      "net_15": "Net 15 jours",
+      "net_30": "Net 30 jours",
+      "net_45": "Net 45 jours",
+      "net_60": "Net 60 jours",
+      "end_of_month": "Fin de mois",
+      "end_of_month_45": "Fin de mois + 45 jours"
+    },
+    "vatRate": {
+      "0": "Exonéré (0%)",
+      "5.5": "Taux réduit (5,5%)",
+      "10": "Taux intermédiaire (10%)",
+      "20": "Taux normal (20%)"
+    },
+    "billingSettings": {
+      "title": "Paramètres de facturation",
+      "organization": "Organisation",
+      "invoicePrefix": "Préfixe facture",
+      "nextInvoiceNumber": "Prochain n° facture",
+      "creditNotePrefix": "Préfixe avoir",
+      "nextCreditNoteNumber": "Prochain n° avoir",
+      "defaultPaymentTerms": "Conditions par défaut",
+      "defaultVatRate": "Taux TVA par défaut",
+      "defaultCurrency": "Devise par défaut",
+      "bankDetails": "Coordonnées bancaires",
+      "bankName": "Nom de la banque",
+      "iban": "IBAN",
+      "bic": "BIC/SWIFT",
+      "legalMentions": "Mentions légales",
+      "footerText": "Texte de pied de page"
+    },
+    "actions": {
+      "create": "Créer une facture",
+      "generateFromTimesheet": "Générer depuis CRA",
+      "edit": "Modifier",
+      "validate": "Valider",
+      "send": "Envoyer",
+      "download": "Télécharger PDF",
+      "print": "Imprimer",
+      "duplicate": "Dupliquer",
+      "cancel": "Annuler",
+      "createCreditNote": "Créer un avoir",
+      "recordPayment": "Enregistrer un paiement",
+      "sendReminder": "Envoyer une relance",
+      "markAsPaid": "Marquer comme payée"
+    },
+    "messages": {
+      "invoiceCreated": "Facture créée avec succès",
+      "invoiceValidated": "Facture validée",
+      "invoiceSent": "Facture envoyée",
+      "invoiceCancelled": "Facture annulée",
+      "creditNoteCreated": "Avoir créé avec succès",
+      "paymentRecorded": "Paiement enregistré",
+      "invoicePaid": "Facture intégralement payée",
+      "reminderSent": "Relance envoyée",
+      "settingsUpdated": "Paramètres mis à jour",
+      "error": "Une erreur est survenue",
+      "cannotCancelWithPayments": "Impossible d'annuler une facture avec des paiements"
+    },
+    "tabs": {
+      "details": "Détails",
+      "lines": "Lignes",
+      "payments": "Paiements",
+      "history": "Historique",
+      "documents": "Documents"
+    },
+    "stats": {
+      "totalInvoiced": "Total facturé",
+      "totalPaid": "Total encaissé",
+      "totalPending": "En attente",
+      "totalOverdue": "En retard",
+      "invoicesCount": "Nombre de factures",
+      "paidCount": "Factures payées",
+      "pendingCount": "Factures en attente",
+      "overdueCount": "Factures en retard",
+      "averagePaymentTime": "Délai moyen de paiement",
+      "paymentRate": "Taux de recouvrement"
+    },
+    "alerts": {
+      "invoiceOverdue": "Cette facture est en retard de {days} jours",
+      "paymentDueSoon": "Paiement dû dans {days} jours",
+      "partialPayment": "Paiement partiel reçu"
+    },
+    "filters": {
+      "all": "Toutes",
+      "draft": "Brouillons",
+      "pending": "En attente",
+      "paid": "Payées",
+      "overdue": "En retard",
+      "thisMonth": "Ce mois",
+      "lastMonth": "Mois dernier",
+      "thisQuarter": "Ce trimestre",
+      "thisYear": "Cette année"
+    },
+    "units": {
+      "day": "jour",
+      "days": "jours",
+      "hour": "heure",
+      "hours": "heures",
+      "unit": "unité",
+      "units": "unités"
+    }
+  }
+}

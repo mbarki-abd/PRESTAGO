@@ -1,0 +1,202 @@
+{
+  "prestago-invoicing": {
+    "title": "Invoicing",
+    "menu": {
+      "invoices": "Invoices",
+      "myInvoices": "My Invoices",
+      "pendingPayments": "Pending Payments",
+      "overdue": "Overdue Invoices",
+      "creditNotes": "Credit Notes",
+      "billingSettings": "Billing Settings"
+    },
+    "invoice": {
+      "number": "Invoice No.",
+      "type": "Type",
+      "status": "Status",
+      "mission": "Mission",
+      "timesheet": "Timesheet",
+      "clientOrganization": "Client",
+      "consultantOrganization": "Consultant",
+      "relatedInvoice": "Related Invoice",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "sentDate": "Sent Date",
+      "paidDate": "Payment Date",
+      "periodStart": "Period Start",
+      "periodEnd": "Period End",
+      "subtotal": "Subtotal",
+      "vatRate": "VAT Rate",
+      "vatAmount": "VAT Amount",
+      "totalAmount": "Total Amount",
+      "paidAmount": "Paid Amount",
+      "balanceDue": "Balance Due",
+      "currency": "Currency",
+      "paymentTerms": "Payment Terms",
+      "notes": "Notes",
+      "internalNotes": "Internal Notes",
+      "validatedBy": "Validated By",
+      "validatedAt": "Validation Date",
+      "createdBy": "Created By"
+    },
+    "invoiceType": {
+      "standard": "Standard Invoice",
+      "proforma": "Proforma Invoice",
+      "credit_note": "Credit Note",
+      "advance": "Advance Payment",
+      "final": "Final Invoice"
+    },
+    "status": {
+      "draft": "Draft",
+      "pending_validation": "Pending Validation",
+      "validated": "Validated",
+      "sent": "Sent",
+      "partially_paid": "Partially Paid",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled",
+      "credited": "Credited"
+    },
+    "line": {
+      "title": "Invoice Lines",
+      "order": "Order",
+      "description": "Description",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "unitPrice": "Unit Price",
+      "vatRate": "VAT",
+      "discount": "Discount",
+      "lineTotal": "Line Total"
+    },
+    "payment": {
+      "title": "Payments",
+      "amount": "Amount",
+      "currency": "Currency",
+      "method": "Payment Method",
+      "status": "Status",
+      "reference": "Reference",
+      "receivedDate": "Received Date",
+      "notes": "Notes",
+      "recordedBy": "Recorded By"
+    },
+    "paymentMethod": {
+      "bank_transfer": "Bank Transfer",
+      "check": "Check",
+      "card": "Credit Card",
+      "cash": "Cash",
+      "direct_debit": "Direct Debit",
+      "paypal": "PayPal",
+      "other": "Other"
+    },
+    "paymentStatus": {
+      "pending": "Pending",
+      "received": "Received",
+      "validated": "Validated",
+      "rejected": "Rejected",
+      "refunded": "Refunded"
+    },
+    "paymentTerms": {
+      "immediate": "Due on Receipt",
+      "net_7": "Net 7 Days",
+      "net_15": "Net 15 Days",
+      "net_30": "Net 30 Days",
+      "net_45": "Net 45 Days",
+      "net_60": "Net 60 Days",
+      "end_of_month": "End of Month",
+      "end_of_month_45": "End of Month + 45 Days"
+    },
+    "vatRate": {
+      "0": "Exempt (0%)",
+      "5.5": "Reduced Rate (5.5%)",
+      "10": "Intermediate Rate (10%)",
+      "20": "Standard Rate (20%)"
+    },
+    "billingSettings": {
+      "title": "Billing Settings",
+      "organization": "Organization",
+      "invoicePrefix": "Invoice Prefix",
+      "nextInvoiceNumber": "Next Invoice No.",
+      "creditNotePrefix": "Credit Note Prefix",
+      "nextCreditNoteNumber": "Next Credit Note No.",
+      "defaultPaymentTerms": "Default Payment Terms",
+      "defaultVatRate": "Default VAT Rate",
+      "defaultCurrency": "Default Currency",
+      "bankDetails": "Bank Details",
+      "bankName": "Bank Name",
+      "iban": "IBAN",
+      "bic": "BIC/SWIFT",
+      "legalMentions": "Legal Mentions",
+      "footerText": "Footer Text"
+    },
+    "actions": {
+      "create": "Create Invoice",
+      "generateFromTimesheet": "Generate from Timesheet",
+      "edit": "Edit",
+      "validate": "Validate",
+      "send": "Send",
+      "download": "Download PDF",
+      "print": "Print",
+      "duplicate": "Duplicate",
+      "cancel": "Cancel",
+      "createCreditNote": "Create Credit Note",
+      "recordPayment": "Record Payment",
+      "sendReminder": "Send Reminder",
+      "markAsPaid": "Mark as Paid"
+    },
+    "messages": {
+      "invoiceCreated": "Invoice created successfully",
+      "invoiceValidated": "Invoice validated",
+      "invoiceSent": "Invoice sent",
+      "invoiceCancelled": "Invoice cancelled",
+      "creditNoteCreated": "Credit note created successfully",
+      "paymentRecorded": "Payment recorded",
+      "invoicePaid": "Invoice fully paid",
+      "reminderSent": "Reminder sent",
+      "settingsUpdated": "Settings updated",
+      "error": "An error occurred",
+      "cannotCancelWithPayments": "Cannot cancel invoice with existing payments"
+    },
+    "tabs": {
+      "details": "Details",
+      "lines": "Lines",
+      "payments": "Payments",
+      "history": "History",
+      "documents": "Documents"
+    },
+    "stats": {
+      "totalInvoiced": "Total Invoiced",
+      "totalPaid": "Total Collected",
+      "totalPending": "Pending",
+      "totalOverdue": "Overdue",
+      "invoicesCount": "Invoice Count",
+      "paidCount": "Paid Invoices",
+      "pendingCount": "Pending Invoices",
+      "overdueCount": "Overdue Invoices",
+      "averagePaymentTime": "Average Payment Time",
+      "paymentRate": "Collection Rate"
+    },
+    "alerts": {
+      "invoiceOverdue": "This invoice is {days} days overdue",
+      "paymentDueSoon": "Payment due in {days} days",
+      "partialPayment": "Partial payment received"
+    },
+    "filters": {
+      "all": "All",
+      "draft": "Drafts",
+      "pending": "Pending",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month",
+      "thisQuarter": "This Quarter",
+      "thisYear": "This Year"
+    },
+    "units": {
+      "day": "day",
+      "days": "days",
+      "hour": "hour",
+      "hours": "hours",
+      "unit": "unit",
+      "units": "units"
+    }
+  }
+}
