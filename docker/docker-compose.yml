@@ -1,55 +1,13 @@
 # =============================================================================
-# PRESTAGO - Docker Compose Base Configuration
+# PRESTAGO - Docker Compose - Infrastructure Services Only
 # =============================================================================
-# Usage:
-#   Development: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
-#   Production:  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+# NocoBase runs from source code (not Docker)
+# Only infrastructure services are containerized
 # =============================================================================
 
 version: '3.8'
 
 services:
-  # ===========================================================================
-  # NocoBase Application
-  # ===========================================================================
-  app:
-    image: nocobase/nocobase:latest
-    container_name: prestago-app
-    restart: unless-stopped
-    environment:
-      # Database
-      - DB_DIALECT=postgres
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_DATABASE=${DB_DATABASE:-prestago}
-      - DB_USER=${DB_USER:-prestago}
-      - DB_PASSWORD=${DB_PASSWORD:-prestago_secret}
-      - DB_LOGGING=${DB_LOGGING:-true}
-      # Application
-      - APP_KEY=${APP_KEY:-prestago-secret-key}
-      - APP_PORT=13000
-      - API_BASE_PATH=/api/
-      # Timezone
-      - TZ=Europe/Paris
-    volumes:
-      - ./storage:/app/nocobase/storage
-      - ../packages/plugins/@prestago:/app/nocobase/packages/plugins/@prestago
-    ports:
-      - "${APP_PORT:-13000}:13000"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - prestago-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:13000/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
   # ===========================================================================
   # PostgreSQL Database
   # ===========================================================================

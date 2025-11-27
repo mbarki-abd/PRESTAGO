@@ -1,0 +1,233 @@
+{
+  "prestago-skills-profiles": {
+    "title": "Compétences & Profils",
+    "menu": {
+      "profiles": "Profils",
+      "skills": "Compétences",
+      "myProfile": "Mon Profil"
+    },
+    "profile": {
+      "title": "Titre Professionnel",
+      "headline": "Accroche",
+      "summary": "Résumé",
+      "experienceLevel": "Niveau d'expérience",
+      "yearsExperience": "Années d'expérience",
+      "availability": "Disponibilité",
+      "availableFrom": "Disponible à partir de",
+      "daysPerWeek": "Jours par semaine",
+      "contractPreferences": "Préférences de contrat",
+      "workMode": "Mode de travail",
+      "mobility": "Mobilité",
+      "mobilityRadius": "Rayon de mobilité (km)",
+      "mobilityRegions": "Régions de mobilité",
+      "dailyRate": "Tarif journalier",
+      "dailyRateMin": "TJM minimum",
+      "dailyRateMax": "TJM maximum",
+      "rateNegotiable": "Tarif négociable",
+      "location": "Localisation",
+      "city": "Ville",
+      "country": "Pays",
+      "status": "Statut",
+      "visibility": "Visibilité",
+      "completeness": "Complétude du profil",
+      "views": "Vues",
+      "applications": "Candidatures",
+      "missions": "Missions"
+    },
+    "experienceLevel": {
+      "junior": "Junior (0-2 ans)",
+      "confirmed": "Confirmé (2-5 ans)",
+      "senior": "Senior (5-10 ans)",
+      "lead": "Lead (10-15 ans)",
+      "expert": "Expert (15+ ans)"
+    },
+    "availabilityStatus": {
+      "available": "Disponible",
+      "partially_available": "Partiellement disponible",
+      "not_available": "Non disponible",
+      "on_mission": "En mission"
+    },
+    "contractType": {
+      "cdi": "CDI",
+      "cdd": "CDD",
+      "freelance": "Freelance",
+      "portage": "Portage salarial",
+      "any": "Tous types"
+    },
+    "workMode": {
+      "onsite": "Sur site",
+      "remote": "Télétravail",
+      "hybrid": "Hybride",
+      "any": "Indifférent"
+    },
+    "profileStatus": {
+      "draft": "Brouillon",
+      "pending_review": "En attente de validation",
+      "active": "Actif",
+      "inactive": "Inactif",
+      "suspended": "Suspendu"
+    },
+    "visibility": {
+      "public": "Public",
+      "organization_only": "Organisation uniquement",
+      "private": "Privé"
+    },
+    "skill": {
+      "name": "Nom",
+      "category": "Catégorie",
+      "level": "Niveau",
+      "yearsExperience": "Années d'expérience",
+      "lastUsed": "Dernière utilisation",
+      "isPrimary": "Compétence principale",
+      "isHighlighted": "Mise en avant"
+    },
+    "skillLevel": {
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "advanced": "Avancé",
+      "expert": "Expert"
+    },
+    "skillCategory": {
+      "technical": "Technique",
+      "functional": "Fonctionnel",
+      "soft_skill": "Soft Skill",
+      "language": "Langue",
+      "certification": "Certification",
+      "tool": "Outil",
+      "methodology": "Méthodologie",
+      "domain": "Domaine métier"
+    },
+    "experience": {
+      "title": "Expériences",
+      "company": "Entreprise",
+      "jobTitle": "Poste",
+      "jobType": "Type de contrat",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "current": "Poste actuel",
+      "location": "Lieu",
+      "remote": "Télétravail",
+      "description": "Description",
+      "responsibilities": "Responsabilités",
+      "achievements": "Réalisations",
+      "technologies": "Technologies utilisées",
+      "reference": "Référence"
+    },
+    "education": {
+      "title": "Formation",
+      "institution": "Établissement",
+      "degree": "Diplôme",
+      "fieldOfStudy": "Domaine d'études",
+      "specialization": "Spécialisation",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "current": "En cours",
+      "grade": "Mention",
+      "thesis": "Mémoire/Thèse"
+    },
+    "certification": {
+      "title": "Certifications",
+      "name": "Nom",
+      "issuer": "Organisme émetteur",
+      "issueDate": "Date d'obtention",
+      "expirationDate": "Date d'expiration",
+      "noExpiration": "N'expire pas",
+      "credentialId": "ID de certification",
+      "credentialUrl": "URL de vérification"
+    },
+    "language": {
+      "title": "Langues",
+      "name": "Langue",
+      "level": "Niveau",
+      "native": "Langue maternelle",
+      "speaking": "Expression orale",
+      "reading": "Compréhension écrite",
+      "writing": "Expression écrite",
+      "certification": "Certification linguistique"
+    },
+    "languageLevel": {
+      "A1": "A1 - Débutant",
+      "A2": "A2 - Élémentaire",
+      "B1": "B1 - Intermédiaire",
+      "B2": "B2 - Intermédiaire avancé",
+      "C1": "C1 - Avancé",
+      "C2": "C2 - Maîtrise",
+      "native": "Langue maternelle"
+    },
+    "document": {
+      "title": "Documents",
+      "type": "Type",
+      "name": "Nom",
+      "upload": "Téléverser",
+      "download": "Télécharger",
+      "primaryCV": "CV principal"
+    },
+    "documentType": {
+      "cv": "CV",
+      "certification": "Certification",
+      "diploma": "Diplôme",
+      "portfolio": "Portfolio",
+      "recommendation": "Lettre de recommandation",
+      "identity": "Pièce d'identité",
+      "other": "Autre"
+    },
+    "search": {
+      "title": "Rechercher des profils",
+      "placeholder": "Compétences, titre, mots-clés...",
+      "filters": "Filtres",
+      "results": "Résultats",
+      "noResults": "Aucun profil trouvé",
+      "sortBy": "Trier par",
+      "relevance": "Pertinence",
+      "recent": "Plus récent",
+      "experience": "Expérience",
+      "rateAsc": "Tarif croissant",
+      "rateDesc": "Tarif décroissant"
+    },
+    "completeness": {
+      "title": "Complétude du profil",
+      "basicInfo": "Informations de base",
+      "skills": "Compétences",
+      "experience": "Expériences",
+      "education": "Formation",
+      "certifications": "Certifications",
+      "languages": "Langues",
+      "documents": "Documents",
+      "preferences": "Préférences",
+      "missingFields": "Champs manquants",
+      "recommendations": "Recommandations"
+    },
+    "actions": {
+      "create": "Créer",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "activate": "Activer",
+      "deactivate": "Désactiver",
+      "addSkill": "Ajouter une compétence",
+      "addExperience": "Ajouter une expérience",
+      "addEducation": "Ajouter une formation",
+      "addCertification": "Ajouter une certification",
+      "addLanguage": "Ajouter une langue",
+      "uploadDocument": "Téléverser un document",
+      "viewProfile": "Voir le profil",
+      "editProfile": "Modifier le profil"
+    },
+    "messages": {
+      "profileCreated": "Profil créé avec succès",
+      "profileUpdated": "Profil mis à jour",
+      "profileActivated": "Profil activé",
+      "profileDeactivated": "Profil désactivé",
+      "skillAdded": "Compétence ajoutée",
+      "skillRemoved": "Compétence supprimée",
+      "experienceAdded": "Expérience ajoutée",
+      "experienceUpdated": "Expérience mise à jour",
+      "experienceDeleted": "Expérience supprimée",
+      "documentUploaded": "Document téléversé",
+      "documentDeleted": "Document supprimé",
+      "error": "Une erreur s'est produite",
+      "minCompleteness": "Le profil doit être complété à au moins 50% pour être activé"
+    }
+  }
+}

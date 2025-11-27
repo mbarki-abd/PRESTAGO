@@ -1,0 +1,233 @@
+{
+  "prestago-skills-profiles": {
+    "title": "Skills & Profiles",
+    "menu": {
+      "profiles": "Profiles",
+      "skills": "Skills",
+      "myProfile": "My Profile"
+    },
+    "profile": {
+      "title": "Professional Title",
+      "headline": "Headline",
+      "summary": "Summary",
+      "experienceLevel": "Experience Level",
+      "yearsExperience": "Years of Experience",
+      "availability": "Availability",
+      "availableFrom": "Available From",
+      "daysPerWeek": "Days per Week",
+      "contractPreferences": "Contract Preferences",
+      "workMode": "Work Mode",
+      "mobility": "Mobility",
+      "mobilityRadius": "Mobility Radius (km)",
+      "mobilityRegions": "Mobility Regions",
+      "dailyRate": "Daily Rate",
+      "dailyRateMin": "Minimum Daily Rate",
+      "dailyRateMax": "Maximum Daily Rate",
+      "rateNegotiable": "Rate Negotiable",
+      "location": "Location",
+      "city": "City",
+      "country": "Country",
+      "status": "Status",
+      "visibility": "Visibility",
+      "completeness": "Profile Completeness",
+      "views": "Views",
+      "applications": "Applications",
+      "missions": "Missions"
+    },
+    "experienceLevel": {
+      "junior": "Junior (0-2 years)",
+      "confirmed": "Confirmed (2-5 years)",
+      "senior": "Senior (5-10 years)",
+      "lead": "Lead (10-15 years)",
+      "expert": "Expert (15+ years)"
+    },
+    "availabilityStatus": {
+      "available": "Available",
+      "partially_available": "Partially Available",
+      "not_available": "Not Available",
+      "on_mission": "On Mission"
+    },
+    "contractType": {
+      "cdi": "Permanent (CDI)",
+      "cdd": "Fixed-term (CDD)",
+      "freelance": "Freelance",
+      "portage": "Portage",
+      "any": "Any Type"
+    },
+    "workMode": {
+      "onsite": "On-site",
+      "remote": "Remote",
+      "hybrid": "Hybrid",
+      "any": "Any"
+    },
+    "profileStatus": {
+      "draft": "Draft",
+      "pending_review": "Pending Review",
+      "active": "Active",
+      "inactive": "Inactive",
+      "suspended": "Suspended"
+    },
+    "visibility": {
+      "public": "Public",
+      "organization_only": "Organization Only",
+      "private": "Private"
+    },
+    "skill": {
+      "name": "Name",
+      "category": "Category",
+      "level": "Level",
+      "yearsExperience": "Years of Experience",
+      "lastUsed": "Last Used",
+      "isPrimary": "Primary Skill",
+      "isHighlighted": "Highlighted"
+    },
+    "skillLevel": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "expert": "Expert"
+    },
+    "skillCategory": {
+      "technical": "Technical",
+      "functional": "Functional",
+      "soft_skill": "Soft Skill",
+      "language": "Language",
+      "certification": "Certification",
+      "tool": "Tool",
+      "methodology": "Methodology",
+      "domain": "Domain"
+    },
+    "experience": {
+      "title": "Experience",
+      "company": "Company",
+      "jobTitle": "Job Title",
+      "jobType": "Employment Type",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "current": "Current Position",
+      "location": "Location",
+      "remote": "Remote Work",
+      "description": "Description",
+      "responsibilities": "Responsibilities",
+      "achievements": "Achievements",
+      "technologies": "Technologies Used",
+      "reference": "Reference"
+    },
+    "education": {
+      "title": "Education",
+      "institution": "Institution",
+      "degree": "Degree",
+      "fieldOfStudy": "Field of Study",
+      "specialization": "Specialization",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "current": "Currently Studying",
+      "grade": "Grade",
+      "thesis": "Thesis"
+    },
+    "certification": {
+      "title": "Certifications",
+      "name": "Name",
+      "issuer": "Issuing Organization",
+      "issueDate": "Issue Date",
+      "expirationDate": "Expiration Date",
+      "noExpiration": "Does Not Expire",
+      "credentialId": "Credential ID",
+      "credentialUrl": "Credential URL"
+    },
+    "language": {
+      "title": "Languages",
+      "name": "Language",
+      "level": "Level",
+      "native": "Native Language",
+      "speaking": "Speaking",
+      "reading": "Reading",
+      "writing": "Writing",
+      "certification": "Language Certification"
+    },
+    "languageLevel": {
+      "A1": "A1 - Beginner",
+      "A2": "A2 - Elementary",
+      "B1": "B1 - Intermediate",
+      "B2": "B2 - Upper Intermediate",
+      "C1": "C1 - Advanced",
+      "C2": "C2 - Proficient",
+      "native": "Native"
+    },
+    "document": {
+      "title": "Documents",
+      "type": "Type",
+      "name": "Name",
+      "upload": "Upload",
+      "download": "Download",
+      "primaryCV": "Primary CV"
+    },
+    "documentType": {
+      "cv": "CV / Resume",
+      "certification": "Certification",
+      "diploma": "Diploma",
+      "portfolio": "Portfolio",
+      "recommendation": "Recommendation Letter",
+      "identity": "Identity Document",
+      "other": "Other"
+    },
+    "search": {
+      "title": "Search Profiles",
+      "placeholder": "Skills, title, keywords...",
+      "filters": "Filters",
+      "results": "Results",
+      "noResults": "No profiles found",
+      "sortBy": "Sort By",
+      "relevance": "Relevance",
+      "recent": "Most Recent",
+      "experience": "Experience",
+      "rateAsc": "Rate (Low to High)",
+      "rateDesc": "Rate (High to Low)"
+    },
+    "completeness": {
+      "title": "Profile Completeness",
+      "basicInfo": "Basic Information",
+      "skills": "Skills",
+      "experience": "Experience",
+      "education": "Education",
+      "certifications": "Certifications",
+      "languages": "Languages",
+      "documents": "Documents",
+      "preferences": "Preferences",
+      "missingFields": "Missing Fields",
+      "recommendations": "Recommendations"
+    },
+    "actions": {
+      "create": "Create",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "addSkill": "Add Skill",
+      "addExperience": "Add Experience",
+      "addEducation": "Add Education",
+      "addCertification": "Add Certification",
+      "addLanguage": "Add Language",
+      "uploadDocument": "Upload Document",
+      "viewProfile": "View Profile",
+      "editProfile": "Edit Profile"
+    },
+    "messages": {
+      "profileCreated": "Profile created successfully",
+      "profileUpdated": "Profile updated",
+      "profileActivated": "Profile activated",
+      "profileDeactivated": "Profile deactivated",
+      "skillAdded": "Skill added",
+      "skillRemoved": "Skill removed",
+      "experienceAdded": "Experience added",
+      "experienceUpdated": "Experience updated",
+      "experienceDeleted": "Experience deleted",
+      "documentUploaded": "Document uploaded",
+      "documentDeleted": "Document deleted",
+      "error": "An error occurred",
+      "minCompleteness": "Profile must be at least 50% complete to activate"
+    }
+  }
+}
