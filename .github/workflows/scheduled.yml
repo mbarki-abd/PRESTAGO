@@ -1,0 +1,174 @@
+# =============================================================================
+# PRESTAGO - Scheduled Tasks Workflow
+# =============================================================================
+# Runs scheduled maintenance tasks: backups, security scans, dependency updates
+# =============================================================================
+
+name: Scheduled Tasks
+
+on:
+  schedule:
+    # Daily backup at 2:00 AM UTC
+    - cron: '0 2 * * *'
+    # Weekly security scan on Sunday at 3:00 AM UTC
+    - cron: '0 3 * * 0'
+    # Weekly dependency check on Monday at 4:00 AM UTC
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Task to run'
+        required: true
+        type: choice
+        options:
+          - backup
+          - security-scan
+          - dependency-update
+
+jobs:
+  # ===========================================================================
+  # Daily Database Backup
+  # ===========================================================================
+  backup:
+    name: Database Backup
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 2 * * *' || inputs.task == 'backup'
+
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.PROD_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Run backup
+        run: |
+          ssh root@${{ secrets.PROD_SERVER_IP }} << 'ENDSSH'
+            set -e
+            echo "=== Starting Daily Backup ==="
+
+            BACKUP_DIR="/opt/backups"
+            DATE=$(date +%Y%m%d_%H%M%S)
+            mkdir -p $BACKUP_DIR
+
+            # Database backup
+            echo "Backing up PostgreSQL..."
+            docker exec prestago-postgres pg_dump -U prestago -Fc prestago > $BACKUP_DIR/db_$DATE.dump
+
+            # MinIO data backup (if critical)
+            echo "Backing up MinIO metadata..."
+            docker exec prestago-minio mc admin info local > $BACKUP_DIR/minio_info_$DATE.txt
+
+            # Compress old SQL backups
+            find $BACKUP_DIR -name "*.sql" -mtime +1 -exec gzip {} \;
+
+            # Remove backups older than 30 days
+            find $BACKUP_DIR -name "*.dump" -mtime +30 -delete
+            find $BACKUP_DIR -name "*.sql.gz" -mtime +30 -delete
+            find $BACKUP_DIR -name "*.tar.gz" -mtime +30 -delete
+
+            # Show backup status
+            echo "=== Backup Complete ==="
+            ls -lh $BACKUP_DIR | tail -10
+            df -h $BACKUP_DIR
+          ENDSSH
+
+      - name: Verify backup
+        run: |
+          ssh root@${{ secrets.PROD_SERVER_IP }} << 'ENDSSH'
+            LATEST=$(ls -t /opt/backups/db_*.dump | head -1)
+            if [ -f "$LATEST" ] && [ -s "$LATEST" ]; then
+              echo "Backup verified: $LATEST ($(du -h $LATEST | cut -f1))"
+            else
+              echo "Backup verification failed!"
+              exit 1
+            fi
+          ENDSSH
+
+  # ===========================================================================
+  # Weekly Security Scan
+  # ===========================================================================
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 3 * * 0' || inputs.task == 'security-scan'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Run npm audit
+        run: |
+          npm audit --json > npm-audit.json || true
+          cat npm-audit.json
+
+      - name: Check Docker images
+        run: |
+          echo "Scanning Docker images..."
+          docker pull postgres:15-alpine
+          docker pull redis:7-alpine
+          docker pull minio/minio:latest
+          docker pull getmeili/meilisearch:v1.5
+
+      - name: Scan Docker images with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'postgres:15-alpine'
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+
+  # ===========================================================================
+  # Weekly Dependency Update Check
+  # ===========================================================================
+  dependency-check:
+    name: Dependency Update Check
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 4 * * 1' || inputs.task == 'dependency-update'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check for updates
+        run: |
+          npx npm-check-updates -u --target minor
+          git diff package.json || echo "No updates available"
+
+      - name: Create update summary
+        run: |
+          echo "## Dependency Update Report" > update-report.md
+          echo "Generated: $(date)" >> update-report.md
+          echo "" >> update-report.md
+          npx npm-check-updates >> update-report.md || true
+          cat update-report.md
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-report
+          path: update-report.md
+          retention-days: 30

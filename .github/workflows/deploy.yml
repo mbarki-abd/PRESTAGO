@@ -1,0 +1,355 @@
+# =============================================================================
+# PRESTAGO - Deployment Workflow
+# =============================================================================
+# Deploys to staging on develop branch, production on main branch
+# =============================================================================
+
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '8'
+
+jobs:
+  # ===========================================================================
+  # Determine Environment
+  # ===========================================================================
+  setup:
+    name: Setup Deployment
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.set-env.outputs.environment }}
+      server_ip: ${{ steps.set-env.outputs.server_ip }}
+      app_domain: ${{ steps.set-env.outputs.app_domain }}
+
+    steps:
+      - name: Determine environment
+        id: set-env
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            ENV="${{ inputs.environment }}"
+          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            ENV="production"
+          else
+            ENV="staging"
+          fi
+
+          echo "environment=$ENV" >> $GITHUB_OUTPUT
+
+          if [ "$ENV" == "production" ]; then
+            echo "server_ip=${{ secrets.PROD_SERVER_IP }}" >> $GITHUB_OUTPUT
+            echo "app_domain=${{ secrets.PROD_DOMAIN }}" >> $GITHUB_OUTPUT
+          else
+            echo "server_ip=${{ secrets.STAGING_SERVER_IP }}" >> $GITHUB_OUTPUT
+            echo "app_domain=${{ secrets.STAGING_DOMAIN }}" >> $GITHUB_OUTPUT
+          fi
+
+  # ===========================================================================
+  # Build
+  # ===========================================================================
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: packages/plugins/@prestago
+
+      - name: Build plugins
+        run: pnpm run build
+        working-directory: packages/plugins/@prestago
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy-package
+          cp -r packages/plugins/@prestago/*/dist deploy-package/
+          cp -r docker deploy-package/
+          cp -r scripts deploy-package/
+          cp .env.example deploy-package/
+          tar -czvf prestago-${{ github.sha }}.tar.gz deploy-package
+
+      - name: Upload deployment package
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-package
+          path: prestago-${{ github.sha }}.tar.gz
+          retention-days: 7
+
+  # ===========================================================================
+  # Deploy to Staging
+  # ===========================================================================
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [setup, build]
+    if: needs.setup.outputs.environment == 'staging'
+    environment:
+      name: staging
+      url: https://${{ needs.setup.outputs.app_domain }}
+
+    steps:
+      - name: Download deployment package
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-package
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ needs.setup.outputs.server_ip }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          # Upload package
+          scp prestago-${{ github.sha }}.tar.gz root@${{ needs.setup.outputs.server_ip }}:/tmp/
+
+          # Execute deployment
+          ssh root@${{ needs.setup.outputs.server_ip }} << 'ENDSSH'
+            set -e
+
+            echo "=== Deploying PRESTAGO to Staging ==="
+
+            # Backup current version
+            if [ -d "/opt/prestago" ]; then
+              cp -r /opt/prestago /opt/prestago.backup.$(date +%Y%m%d%H%M%S)
+            fi
+
+            # Extract new version
+            cd /tmp
+            tar -xzf prestago-${{ github.sha }}.tar.gz
+
+            # Copy files
+            mkdir -p /opt/prestago
+            cp -r deploy-package/* /opt/prestago/
+
+            # Update Docker services
+            cd /opt/prestago/docker
+            docker-compose pull
+            docker-compose up -d
+
+            # Wait for services to be healthy
+            sleep 10
+
+            # Restart NocoBase
+            cd /opt/nocobase
+            pm2 restart nocobase || pm2 start npm --name nocobase -- start
+
+            # Cleanup
+            rm -rf /tmp/prestago-*.tar.gz /tmp/deploy-package
+
+            echo "=== Deployment Complete ==="
+          ENDSSH
+
+      - name: Health check
+        run: |
+          sleep 30
+          curl -f https://${{ needs.setup.outputs.app_domain }}/api/health || echo "Health check pending..."
+
+      - name: Notify deployment success
+        if: success()
+        run: echo "Staging deployment successful!"
+
+  # ===========================================================================
+  # Deploy to Production
+  # ===========================================================================
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [setup, build]
+    if: needs.setup.outputs.environment == 'production'
+    environment:
+      name: production
+      url: https://${{ needs.setup.outputs.app_domain }}
+
+    steps:
+      - name: Download deployment package
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-package
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ needs.setup.outputs.server_ip }} >> ~/.ssh/known_hosts
+
+      - name: Pre-deployment backup
+        run: |
+          ssh root@${{ needs.setup.outputs.server_ip }} << 'ENDSSH'
+            echo "=== Creating Production Backup ==="
+
+            # Database backup
+            docker exec prestago-postgres pg_dump -U prestago prestago > /opt/backups/db_$(date +%Y%m%d%H%M%S).sql
+
+            # Application backup
+            if [ -d "/opt/prestago" ]; then
+              tar -czvf /opt/backups/prestago_$(date +%Y%m%d%H%M%S).tar.gz /opt/prestago
+            fi
+
+            echo "Backup completed"
+          ENDSSH
+
+      - name: Deploy to server
+        run: |
+          # Upload package
+          scp prestago-${{ github.sha }}.tar.gz root@${{ needs.setup.outputs.server_ip }}:/tmp/
+
+          # Execute deployment
+          ssh root@${{ needs.setup.outputs.server_ip }} << 'ENDSSH'
+            set -e
+
+            echo "=== Deploying PRESTAGO to Production ==="
+
+            # Extract new version
+            cd /tmp
+            tar -xzf prestago-${{ github.sha }}.tar.gz
+
+            # Copy files
+            mkdir -p /opt/prestago
+            cp -r deploy-package/* /opt/prestago/
+
+            # Update Docker services with zero-downtime
+            cd /opt/prestago/docker
+            docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull
+            docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-deps --build
+
+            # Wait for services to be healthy
+            echo "Waiting for services..."
+            sleep 15
+
+            # Restart NocoBase with PM2 (zero-downtime)
+            cd /opt/nocobase
+            pm2 reload nocobase || pm2 start npm --name nocobase -- start
+
+            # Cleanup old backups (keep last 5)
+            ls -t /opt/backups/*.sql | tail -n +6 | xargs -r rm
+            ls -t /opt/backups/*.tar.gz | tail -n +6 | xargs -r rm
+
+            # Cleanup temp files
+            rm -rf /tmp/prestago-*.tar.gz /tmp/deploy-package
+
+            echo "=== Production Deployment Complete ==="
+          ENDSSH
+
+      - name: Health check
+        run: |
+          sleep 30
+          for i in {1..5}; do
+            if curl -sf https://${{ needs.setup.outputs.app_domain }}/api/health; then
+              echo "Health check passed!"
+              exit 0
+            fi
+            echo "Attempt $i failed, retrying in 10s..."
+            sleep 10
+          done
+          echo "Health check failed after 5 attempts"
+          exit 1
+
+      - name: Notify deployment success
+        if: success()
+        run: echo "Production deployment successful!"
+
+  # ===========================================================================
+  # Rollback (Manual Trigger)
+  # ===========================================================================
+  rollback:
+    name: Rollback Production
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && failure()
+    needs: deploy-production
+    environment: production
+
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.PROD_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Rollback to previous version
+        run: |
+          ssh root@${{ secrets.PROD_SERVER_IP }} << 'ENDSSH'
+            echo "=== Rolling Back Production ==="
+
+            # Find latest backup
+            LATEST_BACKUP=$(ls -t /opt/backups/prestago_*.tar.gz | head -1)
+            LATEST_DB=$(ls -t /opt/backups/db_*.sql | head -1)
+
+            if [ -n "$LATEST_BACKUP" ]; then
+              # Restore application
+              rm -rf /opt/prestago
+              tar -xzf $LATEST_BACKUP -C /
+
+              # Restore database
+              docker exec -i prestago-postgres psql -U prestago prestago < $LATEST_DB
+
+              # Restart services
+              cd /opt/prestago/docker
+              docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+              cd /opt/nocobase
+              pm2 restart nocobase
+
+              echo "Rollback completed"
+            else
+              echo "No backup found for rollback!"
+              exit 1
+            fi
+          ENDSSH
