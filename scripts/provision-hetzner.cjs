@@ -2,9 +2,9 @@
 // PRESTAGO - Hetzner Server Provisioning Script
 // =============================================================================
 // This script creates a dedicated Hetzner Cloud server for PRESTAGO
+// Uses native Node.js fetch API (no external dependencies)
 // =============================================================================
 
-const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
@@ -224,42 +224,63 @@ final_message: "PRESTAGO server is ready! Connect via SSH and run the setup scri
 
 class HetznerProvisioner {
   constructor(apiToken) {
-    this.client = axios.create({
-      baseURL: 'https://api.hetzner.cloud/v1',
+    this.apiToken = apiToken;
+    this.baseUrl = 'https://api.hetzner.cloud/v1';
+  }
+
+  async request(method, endpoint, data = null) {
+    const url = `${this.baseUrl}${endpoint}`;
+    const options = {
+      method,
       headers: {
-        Authorization: `Bearer ${apiToken}`,
+        'Authorization': `Bearer ${this.apiToken}`,
         'Content-Type': 'application/json',
       },
-    });
+    };
+
+    if (data) {
+      options.body = JSON.stringify(data);
+    }
+
+    const response = await fetch(url, options);
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      const error = new Error(`API Error: ${response.status}`);
+      error.response = { status: response.status, data: responseData };
+      throw error;
+    }
+
+    return responseData;
   }
 
   async listSSHKeys() {
-    const response = await this.client.get('/ssh_keys');
-    return response.data.ssh_keys;
+    const response = await this.request('GET', '/ssh_keys');
+    return response.ssh_keys;
   }
 
   async createFirewall(config) {
     console.log('Creating firewall...');
-    const response = await this.client.post('/firewalls', {
+    const response = await this.request('POST', '/firewalls', {
       name: config.name,
       rules: config.rules,
       labels: CONFIG.server.labels
     });
-    console.log(`✓ Firewall created: ${response.data.firewall.name} (ID: ${response.data.firewall.id})`);
-    return response.data.firewall;
+    console.log(`✓ Firewall created: ${response.firewall.name} (ID: ${response.firewall.id})`);
+    return response.firewall;
   }
 
   async createVolume(config, location) {
     console.log('Creating volume...');
-    const response = await this.client.post('/volumes', {
+    const response = await this.request('POST', '/volumes', {
       name: config.name,
       size: config.size,
       location: location,
       format: config.format,
       labels: CONFIG.server.labels
     });
-    console.log(`✓ Volume created: ${response.data.volume.name} (${config.size}GB)`);
-    return response.data.volume;
+    console.log(`✓ Volume created: ${response.volume.name} (${config.size}GB)`);
+    return response.volume;
   }
 
   async createServer(config, sshKeyIds, firewallId) {
@@ -277,33 +298,33 @@ class HetznerProvisioner {
       start_after_create: true,
     };
 
-    const response = await this.client.post('/servers', serverData);
-    console.log(`✓ Server created: ${response.data.server.name}`);
-    console.log(`  - ID: ${response.data.server.id}`);
-    console.log(`  - IPv4: ${response.data.server.public_net.ipv4.ip}`);
-    console.log(`  - IPv6: ${response.data.server.public_net.ipv6.ip}`);
-    console.log(`  - Status: ${response.data.server.status}`);
+    const response = await this.request('POST', '/servers', serverData);
+    console.log(`✓ Server created: ${response.server.name}`);
+    console.log(`  - ID: ${response.server.id}`);
+    console.log(`  - IPv4: ${response.server.public_net.ipv4.ip}`);
+    console.log(`  - IPv6: ${response.server.public_net.ipv6.ip}`);
+    console.log(`  - Status: ${response.server.status}`);
 
-    if (response.data.root_password) {
-      console.log(`  - Root Password: ${response.data.root_password}`);
+    if (response.root_password) {
+      console.log(`  - Root Password: ${response.root_password}`);
     }
 
-    return response.data;
+    return response;
   }
 
   async attachVolume(volumeId, serverId) {
     console.log('Attaching volume to server...');
-    const response = await this.client.post(`/volumes/${volumeId}/actions/attach`, {
+    const response = await this.request('POST', `/volumes/${volumeId}/actions/attach`, {
       server: serverId,
       automount: true
     });
     console.log(`✓ Volume attached to server`);
-    return response.data;
+    return response;
   }
 
   async listServers() {
-    const response = await this.client.get('/servers');
-    return response.data.servers;
+    const response = await this.request('GET', '/servers');
+    return response.servers;
   }
 
   async getServerByName(name) {
