@@ -1,0 +1,34 @@
+{
+  "name": "@prestago/plugin-rfp",
+  "version": "1.0.0",
+  "description": "PRESTAGO - Request for Proposals (RFP) Management Plugin",
+  "main": "./dist/server/index.js",
+  "types": "./dist/server/index.d.ts",
+  "license": "AGPL-3.0",
+  "keywords": [
+    "nocobase",
+    "prestago",
+    "rfp",
+    "request-for-proposals",
+    "missions"
+  ],
+  "dependencies": {
+    "@nocobase/server": "^1.0.0",
+    "@nocobase/client": "^1.0.0",
+    "@prestago/plugin-users": "^1.0.0",
+    "@prestago/plugin-skills-profiles": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@nocobase/server": "^1.0.0",
+    "@nocobase/client": "^1.0.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist",
+    "dev": "tsc -b --watch"
+  }
+}
